@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quicktel Bundles - Buy Now</title>
+  <title>Quicktel Bundles - Till Payment</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
     }
     .container {
       background: rgba(0,0,0,0.4);
-      max-width: 800px;
+      max-width: 700px;
       margin: auto;
       padding: 20px;
       border-radius: 12px;
@@ -29,142 +29,134 @@
     }
     .bundle-option {
       background: #00c853;
-      margin: 6px;
+      margin: 8px;
       padding: 12px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      display: inline-block;
     }
     .bundle-option:hover {
       background: #00a543;
     }
-    #payment-section {
-      display: none;
-      margin-top: 20px;
-    }
-    #till-number {
-      background: #fff;
-      color: #000;
-      padding: 10px;
-      font-size: 20px;
-      margin: 10px 0;
-      border-radius: 8px;
+    .category-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 22px;
+      margin-top: 30px;
     }
     #status {
       margin-top: 20px;
       font-weight: bold;
-    }
-    .category-title {
-      font-family: "Times New Roman", Times, serif;
-      font-weight: bold;
-      font-size: 20px;
-      margin-top: 30px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Quicktel Bundles</h1>
-    <p>Select a bundle to continue to payment</p>
+    <p>Select a bundle below. You'll be guided to pay and receive your bundle instantly!</p>
 
-    <!-- Daily Bundles -->
+    <form id="bundleForm">
+      <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
+    </form>
+
+    <!-- DAILY BUNDLES -->
     <div class="category-title">Daily Bundles</div>
-    <div class="bundle-option" data-value="5" data-label="20 SMS Daily">20 SMS - KSh 5</div>
-    <div class="bundle-option" data-value="10" data-label="200 SMS Daily">200 SMS - KSh 10</div>
-    <div class="bundle-option" data-value="20" data-label="Unlimited SMS Daily">Unlimited SMS - KSh 20</div>
-    <div class="bundle-option" data-value="50" data-label="100MB Daily">100MB - KSh 50</div>
-    <div class="bundle-option" data-value="100" data-label="200MB Daily">200MB - KSh 100</div>
-    <div class="bundle-option" data-value="250" data-label="500MB Daily">500MB - KSh 250</div>
-    <div class="bundle-option" data-value="500" data-label="1000MB Daily">1000MB - KSh 500</div>
-    <div class="bundle-option" data-value="10" data-label="100 Min Voice">100 Mins Voice - KSh 10</div>
+    <div class="bundle-option" data-value="5" data-label="20 SMS">20 SMS - KSh 5</div>
+    <div class="bundle-option" data-value="10" data-label="200 SMS">200 SMS - KSh 10</div>
+    <div class="bundle-option" data-value="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
+    <div class="bundle-option" data-value="50" data-label="100MB (7 days)">100MB - KSh 50</div>
+    <div class="bundle-option" data-value="100" data-label="200MB (7 days)">200MB - KSh 100</div>
+    <div class="bundle-option" data-value="250" data-label="500MB (7 days)">500MB - KSh 250</div>
+    <div class="bundle-option" data-value="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
+    <div class="bundle-option" data-value="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
 
-    <!-- Weekly Bundles -->
+    <!-- WEEKLY BUNDLES -->
     <div class="category-title">Weekly Bundles</div>
-    <div class="bundle-option" data-value="20" data-label="100 SMS Weekly">100 SMS - KSh 20</div>
-    <div class="bundle-option" data-value="30" data-label="1000 SMS Weekly">1000 SMS - KSh 30</div>
-    <div class="bundle-option" data-value="50" data-label="Unlimited SMS Weekly">Unlimited SMS - KSh 50</div>
-    <div class="bundle-option" data-value="100" data-label="500MB Weekly">500MB - KSh 100</div>
-    <div class="bundle-option" data-value="250" data-label="1.5GB Weekly">1.5GB - KSh 250</div>
-    <div class="bundle-option" data-value="500" data-label="3.5GB Weekly">3.5GB - KSh 500</div>
+    <div class="bundle-option" data-value="20" data-label="100 SMS">100 SMS - KSh 20</div>
+    <div class="bundle-option" data-value="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
+    <div class="bundle-option" data-value="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
+    <div class="bundle-option" data-value="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
+    <div class="bundle-option" data-value="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
+    <div class="bundle-option" data-value="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
 
-    <!-- Monthly Bundles -->
+    <!-- MONTHLY BUNDLES -->
     <div class="category-title">Monthly Bundles</div>
-    <div class="bundle-option" data-value="100" data-label="1500 SMS Monthly">1500 SMS - KSh 100</div>
-    <div class="bundle-option" data-value="200" data-label="3500 SMS Monthly">3500 SMS - KSh 200</div>
-    <div class="bundle-option" data-value="100" data-label="400MB Monthly">400MB - KSh 100</div>
-    <div class="bundle-option" data-value="250" data-label="1GB Monthly">1GB - KSh 250</div>
-    <div class="bundle-option" data-value="500" data-label="2GB Monthly">2GB - KSh 500</div>
-    <div class="bundle-option" data-value="1000" data-label="8GB Monthly">8GB - KSh 1000</div>
-    <div class="bundle-option" data-value="2000" data-label="17GB Monthly">17GB - KSh 2000</div>
-    <div class="bundle-option" data-value="3000" data-label="27GB Monthly">27GB - KSh 3000</div>
-    <div class="bundle-option" data-value="5000" data-label="47GB Monthly">47GB - KSh 5000</div>
-    <div class="bundle-option" data-value="10000" data-label="100GB Monthly">100GB - KSh 10000</div>
+    <div class="bundle-option" data-value="100" data-label="400MB">400MB - KSh 100</div>
+    <div class="bundle-option" data-value="250" data-label="1GB">1GB - KSh 250</div>
+    <div class="bundle-option" data-value="500" data-label="2GB">2GB - KSh 500</div>
+    <div class="bundle-option" data-value="1000" data-label="8GB">8GB - KSh 1,000</div>
+    <div class="bundle-option" data-value="2000" data-label="17GB">17GB - KSh 2,000</div>
+    <div class="bundle-option" data-value="3000" data-label="27GB">27GB - KSh 3,000</div>
+    <div class="bundle-option" data-value="5000" data-label="47GB">47GB - KSh 5,000</div>
+    <div class="bundle-option" data-value="10000" data-label="100GB">100GB - KSh 10,000</div>
 
-    <!-- All in One -->
+    <!-- ALL-IN-ONE -->
     <div class="category-title">All in One Bundles</div>
-    <div class="bundle-option" data-value="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1000</div>
-    <div class="bundle-option" data-value="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2000</div>
-    <div class="bundle-option" data-value="3000" data-label="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3000</div>
-    <div class="bundle-option" data-value="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5000</div>
-    <div class="bundle-option" data-value="10000" data-label="100GB + 10000 SMS">100GB + 10000 SMS - KSh 10000</div>
+    <div class="bundle-option" data-value="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
+    <div class="bundle-option" data-value="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
+    <div class="bundle-option" data-value="3000" data-label="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</div>
+    <div class="bundle-option" data-value="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</div>
+    <div class="bundle-option" data-value="10000" data-label="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</div>
 
-    <!-- Payment Section -->
-    <div id="payment-section">
-      <h3>Enter your MPESA Number</h3>
-      <form id="bundleForm">
-        <input type="tel" id="phone" placeholder="e.g. 2547XXXXXXXX" required />
-      </form>
-      <div id="till-number">📌 Pay to Till Number: <strong>8644442</strong></div>
-      <div id="status"></div>
-    </div>
+    <div id="status"></div>
   </div>
 
   <script>
     const bundleOptions = document.querySelectorAll('.bundle-option');
-    const paymentSection = document.getElementById('payment-section');
     const phoneInput = document.getElementById('phone');
     const statusDiv = document.getElementById('status');
-    let selectedAmount = 0;
-    let selectedLabel = "";
-    let pollingInterval;
 
     function pollPayment(phone, amount, label) {
-      statusDiv.textContent = "⏳ Waiting for payment confirmation...";
-      pollingInterval = setInterval(async () => {
-        const res = await fetch('/check-payment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone, amount, label })
-        });
-        const data = await res.json();
-
-        if (data.success) {
-          clearInterval(pollingInterval);
-          statusDiv.innerHTML = "✅ Payment received! Your " + label + " bundle is now active.";
+      statusDiv.textContent = "⏳ Checking for payment confirmation...";
+      const polling = setInterval(async () => {
+        try {
+          const res = await fetch('/check-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone, amount, label })
+          });
+          const data = await res.json();
+          if (data.success) {
+            clearInterval(polling);
+            statusDiv.innerHTML = `✅ ${label} activated successfully!`;
+          }
+        } catch (err) {
+          console.error('Error polling:', err);
         }
       }, 4000);
     }
 
     bundleOptions.forEach(btn => {
       btn.addEventListener('click', () => {
-        selectedAmount = btn.dataset.value;
-        selectedLabel = btn.dataset.label;
+        const amount = btn.dataset.value;
+        const label = btn.dataset.label;
+        const phone = phoneInput.value.trim();
 
-        paymentSection.style.display = "block";
-        statusDiv.innerHTML = `💡 Please pay <strong>KSh ${selectedAmount}</strong> to the Till number above after entering your MPESA number.`;
+        if (!/^2547\d{8}$/.test(phone)) {
+          alert("Enter a valid MPESA number (e.g. 2547XXXXXXXX)");
+          return;
+        }
+
+        // Open payment instructions in new tab
+        const newTab = window.open('', '_blank');
+        newTab.document.write(`
+          <html>
+            <head><title>Pay via Till</title></head>
+            <body style="font-family: Arial; background: #f9f9f9; text-align: center; padding: 40px;">
+              <h2>Complete Payment</h2>
+              <p>You're purchasing: <strong>${label}</strong></p>
+              <p>Amount: <strong>KSh ${amount}</strong></p>
+              <p>Please pay to the MPESA Till Number:</p>
+              <div style="font-size: 26px; margin: 20px; background: #e0e0e0; padding: 15px; border-radius: 8px;">8644442</div>
+              <p>Using your number: <strong>${phone}</strong></p>
+              <p>After payment, return to the previous tab.</p>
+            </body>
+          </html>
+        `);
+
+        statusDiv.innerHTML = `🟢 Waiting for payment of KSh ${amount} from ${phone} for ${label}...`;
+        pollPayment(phone, amount, label);
       });
-    });
-
-    phoneInput.addEventListener('change', () => {
-      const phone = phoneInput.value.trim();
-      if (!/^2547\d{8}$/.test(phone)) {
-        alert("⚠️ Enter a valid phone number (e.g. 2547XXXXXXXX)");
-        return;
-      }
-
-      statusDiv.innerHTML = `📲 Pay <strong>KSh ${selectedAmount}</strong> to Till <strong>8644442</strong><br>Using number: <strong>${phone}</strong><br><br>Checking for payment...`;
-      pollPayment(phone, selectedAmount, selectedLabel);
     });
   </script>
 </body>
