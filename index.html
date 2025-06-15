@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quicktel Bundles</title>
   <style>
     body {
@@ -12,13 +13,13 @@
       padding: 20px;
     }
     .container {
-      max-width: 400px;
+      max-width: 500px;
       margin: auto;
       background-color: rgba(0, 0, 0, 0.4);
       padding: 20px;
       border-radius: 12px;
     }
-    select, input, button {
+    input, button {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -30,24 +31,37 @@
       color: white;
       font-weight: bold;
     }
-    .bundle-category {
+    .bundle-section {
+      margin: 20px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .bundle-section h3 {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      background-color: #00c853;
       color: #fff;
+      margin-bottom: 10px;
     }
-    .daily {
-      background-color: #2196f3;
+    .bundle-option {
+      display: block;
+      width: 100%;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 2px solid transparent;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
     }
-    .weekly {
-      background-color: orange;
+    .bundle-option.active {
+      border-color: #00c853;
+      background-color: #00c853;
     }
-    .monthly {
-      background-color: purple;
-    }
-    .allinone {
-      background-color: teal;
-    }
+    .daily-bg { background-color: #2196f3; }
+    .weekly-bg { background-color: orange; }
+    .monthly-bg { background-color: purple; }
+    .allinone-bg { background-color: teal; }
     .whatsapp {
       margin-top: 20px;
       display: inline-block;
@@ -62,70 +76,97 @@
 <body>
   <div class="container">
     <h1>Quicktel Bundles</h1>
-    <p>Buy data bundles instantly</p><form id="bundleForm">
-  <label for="phone">Phone Number</label>
-  <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required />
+    <p>Buy data bundles instantly</p>
+    
+    <form id="bundleForm">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required />
+      <input type="hidden" id="bundle" name="bundle" required />
 
-  <label for="bundle">Choose a Bundle</label>
-  <select id="bundle" name="bundle">
-    <optgroup class="bundle-category daily" label="📅 Daily Bundles">
-      <option value="5">20 SMS - KSh 5</option>
-      <option value="10">200 SMS - KSh 10</option>
-      <option value="20">Unlimited SMS - KSh 20</option>
-      <option value="50">100MB - KSh 50</option>
-      <option value="100">200MB - KSh 100</option>
-      <option value="250">500MB - KSh 250</option>
-      <option value="500">1000MB - KSh 500</option>
-      <option value="10">100 Minutes - KSh 10</option>
-    </optgroup>
-    <optgroup class="bundle-category weekly" label="📆 Weekly Bundles">
-      <option value="20">100 SMS - KSh 20</option>
-      <option value="30">1000 SMS - KSh 30</option>
-      <option value="50">Unlimited SMS - KSh 50</option>
-      <option value="100">500MB - KSh 100</option>
-      <option value="250">1.5GB - KSh 250</option>
-      <option value="500">3.5GB - KSh 500</option>
-    </optgroup>
-    <optgroup class="bundle-category monthly" label="🗓️ Monthly Bundles">
-      <option value="100">400MB - KSh 100</option>
-      <option value="250">1GB - KSh 250</option>
-      <option value="500">2GB - KSh 500</option>
-      <option value="1000">8GB - KSh 1000</option>
-      <option value="2000">17GB - KSh 2000</option>
-      <option value="3000">27GB - KSh 3000</option>
-      <option value="5000">47GB - KSh 5000</option>
-      <option value="10000">100GB - KSh 10000</option>
-    </optgroup>
-    <optgroup class="bundle-category allinone" label="🔁 All in One Bundles">
-      <option value="1000">8GB + 1000 SMS - KSh 1000</option>
-      <option value="2000">17GB + 2000 SMS - KSh 2000</option>
-      <option value="3000">27GB + 3000 SMS - KSh 3000</option>
-      <option value="5000">47GB + 5000 SMS - KSh 5000</option>
-      <option value="10000">100GB + 10000 SMS - KSh 10000</option>
-    </optgroup>
-  </select>
+      <!-- Daily Bundles -->
+      <div class="bundle-section daily-bg">
+        <h3>📅 Daily Bundles</h3>
+        <div class="bundle-option" data-value="5">20 SMS - KSh 5</div>
+        <div class="bundle-option" data-value="10">200 SMS - KSh 10</div>
+        <div class="bundle-option" data-value="20">Unlimited SMS - KSh 20</div>
+        <div class="bundle-option" data-value="50">100MB - KSh 50</div>
+        <div class="bundle-option" data-value="100">200MB - KSh 100</div>
+        <div class="bundle-option" data-value="250">500MB - KSh 250</div>
+        <div class="bundle-option" data-value="500">1000MB - KSh 500</div>
+        <div class="bundle-option" data-value="10">100 Minutes - KSh 10</div>
+      </div>
 
-  <button type="submit">Pay with M-PESA</button>
-</form>
+      <!-- Weekly Bundles -->
+      <div class="bundle-section weekly-bg">
+        <h3>📆 Weekly Bundles</h3>
+        <div class="bundle-option" data-value="20">100 SMS - KSh 20</div>
+        <div class="bundle-option" data-value="30">1000 SMS - KSh 30</div>
+        <div class="bundle-option" data-value="50">Unlimited SMS - KSh 50</div>
+        <div class="bundle-option" data-value="100">500MB - KSh 100</div>
+        <div class="bundle-option" data-value="250">1.5GB - KSh 250</div>
+        <div class="bundle-option" data-value="500">3.5GB - KSh 500</div>
+      </div>
 
-<div id="confirmation" style="display:none">
-  <h3>Payment Request Sent</h3>
-  <p>Check your phone (Sim: <strong><span id="confirmedPhone"></span></strong>) to enter M-PESA PIN.</p>
-</div>
+      <!-- Monthly Bundles -->
+      <div class="bundle-section monthly-bg">
+        <h3>🗓️ Monthly Bundles</h3>
+        <div class="bundle-option" data-value="100">400MB - KSh 100</div>
+        <div class="bundle-option" data-value="250">1GB - KSh 250</div>
+        <div class="bundle-option" data-value="500">2GB - KSh 500</div>
+        <div class="bundle-option" data-value="1000">8GB - KSh 1000</div>
+        <div class="bundle-option" data-value="2000">17GB - KSh 2000</div>
+        <div class="bundle-option" data-value="3000">27GB - KSh 3000</div>
+        <div class="bundle-option" data-value="5000">47GB - KSh 5000</div>
+        <div class="bundle-option" data-value="10000">100GB - KSh 10000</div>
+      </div>
 
-<a class="whatsapp" href="https://wa.me/254729952483" target="_blank">
-  📱 Chat with us on WhatsApp
-</a>
+      <!-- All-in-One Bundles -->
+      <div class="bundle-section allinone-bg">
+        <h3>🔁 All in One Bundles</h3>
+        <div class="bundle-option" data-value="1000">8GB + 1000 SMS - KSh 1000</div>
+        <div class="bundle-option" data-value="2000">17GB + 2000 SMS - KSh 2000</div>
+        <div class="bundle-option" data-value="3000">27GB + 3000 SMS - KSh 3000</div>
+        <div class="bundle-option" data-value="5000">47GB + 5000 SMS - KSh 5000</div>
+        <div class="bundle-option" data-value="10000">100GB + 10000 SMS - KSh 10000</div>
+      </div>
 
-  </div>  <script>
+      <button type="submit">Pay with M-PESA</button>
+    </form>
+
+    <div id="confirmation" style="display:none">
+      <h3>Payment Request Sent</h3>
+      <p>Check your phone (Sim: <strong><span id="confirmedPhone"></span></strong>) to enter M-PESA PIN.</p>
+    </div>
+
+    <a class="whatsapp" href="https://wa.me/254729952483" target="_blank">
+      📱 Chat with us on WhatsApp
+    </a>
+  </div>
+
+  <script>
     const form = document.getElementById('bundleForm');
     const confirmation = document.getElementById('confirmation');
     const confirmedPhone = document.getElementById('confirmedPhone');
+    const bundleOptions = document.querySelectorAll('.bundle-option');
+    const hiddenInput = document.getElementById('bundle');
+
+    bundleOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        bundleOptions.forEach(o => o.classList.remove('active'));
+        option.classList.add('active');
+        hiddenInput.value = option.dataset.value;
+      });
+    });
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const phone = document.getElementById('phone').value;
-      const amount = document.getElementById('bundle').value;
+      const amount = hiddenInput.value;
+
+      if (!amount) {
+        alert("Please select a bundle.");
+        return;
+      }
 
       try {
         const res = await fetch('/stkpush', {
@@ -147,5 +188,6 @@
         console.error(err);
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
