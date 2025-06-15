@@ -39,34 +39,72 @@
       text-decoration: none;
       color: white;
     }
-    optgroup {
-      font-weight: bold;
-      background-color: #333;
-      color: #fff;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Quicktel Bundles</h1>
-    <p>Buy data bundles instantly</p><form id="bundleForm">
+    <p>Buy data, SMS, or voice bundles instantly</p><form id="bundleForm">
   <label for="phone">Phone Number</label>
   <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required />
 
   <label for="bundle">Choose a Bundle</label>
   <select id="bundle" name="bundle">
-    <optgroup label="Daily Bundles">
-      <option value="10">250MB - KSh 10 (Valid for 24hrs)</option>
-      <option value="20">300MB - KSh 20 (Valid for 24hrs)</option>
-      <option value="50">500MB - KSh 50 (Valid for 24hrs)</option>
-      <option value="99">1GB - KSh 99 (Valid for 24hrs)</option>
+    <optgroup label="Daily - SMS">
+      <option value="5">20 SMS - KSh 5</option>
+      <option value="10">200 SMS - KSh 10</option>
+      <option value="20">Unlimited SMS - KSh 20</option>
     </optgroup>
-    <optgroup label="Weekly Bundles">
-      <option value="150">1.5GB - KSh 150 (Valid for 3 days)</option>
-      <option value="250">2GB - KSh 250 (Valid for 7 days)</option>
+    <optgroup label="Daily - Data (7 Days Validity)">
+      <option value="50">100MB - KSh 50</option>
+      <option value="100">200MB - KSh 100</option>
+      <option value="250">500MB - KSh 250</option>
+      <option value="500">1GB - KSh 500</option>
     </optgroup>
-    <optgroup label="Monthly Bundles">
-      <option value="500">5GB - KSh 500 (Valid for 30 days)</option>
+    <optgroup label="Daily - Voice">
+      <option value="10">100 Minutes - KSh 10</option>
+    </optgroup>
+
+    <optgroup label="Weekly - SMS">
+      <option value="20">100 SMS - KSh 20</option>
+      <option value="30">1000 SMS - KSh 30</option>
+      <option value="50">Unlimited SMS - KSh 50</option>
+    </optgroup>
+    <optgroup label="Weekly - Data (Free WhatsApp)">
+      <option value="100">500MB - KSh 100</option>
+      <option value="250">1.5GB - KSh 250</option>
+      <option value="500">3.5GB - KSh 500</option>
+    </optgroup>
+    <optgroup label="Weekly - BLAZE CYP Bundles">
+      <option value="100">BLAZE Bundle - 7 Days - KSh 100</option>
+    </optgroup>
+
+    <optgroup label="Monthly - SMS">
+      <option value="100">1500 SMS - KSh 100</option>
+      <option value="200">3500 SMS - KSh 200</option>
+    </optgroup>
+    <optgroup label="Monthly - Data">
+      <option value="100">400MB - KSh 100</option>
+      <option value="250">1GB - KSh 250</option>
+      <option value="500">2GB - KSh 500</option>
+      <option value="1000">8GB - KSh 1000</option>
+      <option value="2000">17GB - KSh 2000</option>
+      <option value="3000">27GB - KSh 3000</option>
+      <option value="5000">47GB - KSh 5000</option>
+      <option value="10000">100GB - KSh 10000</option>
+    </optgroup>
+    <optgroup label="Monthly - All in One">
+      <option value="1000">8GB + 1000 SMS - KSh 1000</option>
+      <option value="2000">17GB + 2000 SMS - KSh 2000</option>
+      <option value="3000">27GB + 3000 SMS - KSh 3000</option>
+      <option value="5000">47GB + 5000 SMS - KSh 5000</option>
+      <option value="10000">100GB + 10000 SMS - KSh 10000</option>
+    </optgroup>
+    <optgroup label="Monthly - BLAZE Bundles">
+      <option value="100">1.25GB - 30 Days - KSh 100</option>
+      <option value="250">3GB - 30 Days - KSh 250</option>
+      <option value="500">7.5GB - 30 Days - KSh 500</option>
+      <option value="1000">25GB - 30 Days - KSh 1000</option>
     </optgroup>
   </select>
 
