@@ -1,111 +1,163 @@
-// server.js const express = require('express'); const bodyParser = require('body-parser'); const cors = require('cors'); const dotenv = require('dotenv'); const sendSMS = require('./routes/send-sms'); const checkPayment = require('./routes/check-payment');
-
-dotenv.config(); const app = express();
-
-app.use(cors()); app.use(bodyParser.json()); app.use(express.static('public'));
-
-app.post('/check-payment', checkPayment); app.post('/send-sms', sendSMS);
-
-const PORT = process.env.PORT || 3000; app.listen(PORT, () => { console.log(Server running on port ${PORT}); });
-
-// routes/check-payment.js const axios = require('axios'); module.exports = async (req, res) => { const { phone, amount } = req.body;
-
-try { const response = await axios.post('https://api.safaricom.co.ke/mpesa/payment/validate', { till: '8644442', phone, amount });
-
-if (response.data && response.data.status === 'CONFIRMED') {
-  res.json({ success: true });
-} else {
-  res.json({ success: false });
-}
-
-} catch (error) { console.error('Payment check failed:', error); res.json({ success: false }); } };
-
-// routes/send-sms.js const africastalking = require('africastalking')({ apiKey: process.env.AT_API_KEY, username: process.env.AT_USERNAME });
-
-const sms = africastalking.SMS;
-
-module.exports = async (req, res) => { const { phone, message } = req.body; try { await sms.send({ to: [phone], message }); res.json({ success: true }); } catch (error) { console.error('SMS send error:', error); res.json({ success: false }); } };
-
-// public/index.html
-
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quicktel Bundles - Till Payment</title>
   <style>
-    body { font-family: Arial; background: linear-gradient(to right, #6a11cb, #2575fc); color: #fff; text-align: center; padding: 20px; }
-    .container { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; max-width: 600px; margin: auto; }
-    input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
-    .bundle-option { background: #00c853; margin: 8px; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-    .bundle-option:hover { background: #00a543; }
-    #till-number { background: #fff; color: #000; padding: 10px; font-size: 20px; margin: 15px 0; border-radius: 8px; }
-    #status { margin-top: 20px; font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      background: rgba(0,0,0,0.4);
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    .bundle-option {
+      background: #00c853;
+      margin: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .bundle-option:hover {
+      background: #00a543;
+    }
+    #till-number {
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      font-size: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .offers {
+      text-align: left;
+      margin-top: 40px;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .offers h2 {
+      color: #ffff00;
+    }
+    .offers ul {
+      list-style: none;
+      padding: 0;
+    }
+    .offers ul li {
+      margin: 8px 0;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Quicktel Bundles</h1>
-    <p>Buy your bundle, pay via Till number and get activated instantly!</p>
-    <div id="till-number">📌 Pay to Till Number: <strong>8644442</strong></div>
-    <form id="bundleForm">
-      <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
-      <input type="hidden" id="bundleAmount" />
-    </form>
-    <h3>Select a Bundle</h3>
-    <div class="bundle-option" data-value="10">100MB - KSh 10</div>
-    <div class="bundle-option" data-value="50">500MB - KSh 50</div>
-    <div class="bundle-option" data-value="100">1GB - KSh 100</div>
-    <div id="status"></div>
-  </div>
-  <script>
+    <p>Select bundle → Pay via Till Number → Get activated instantly!</p><div id="till-number">📌 Till Number: <strong>8644442</strong></div>
+
+<form id="bundleForm">
+  <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
+</form>
+
+<h3>Select a Bundle</h3>
+<div class="bundle-option" data-value="10" data-label="100MB">100MB - KSh 10</div>
+<div class="bundle-option" data-value="50" data-label="500MB">500MB - KSh 50</div>
+<div class="bundle-option" data-value="100" data-label="1GB">1GB - KSh 100</div>
+
+<div id="status"></div>
+
+<div class="offers">
+  <h2>Daily Bundles</h2>
+  <ul>
+    <li>SMS: 20 SMS - Ksh 5, 200 SMS - Ksh 10, Unlimited SMS - Ksh 20</li>
+    <li>Data: 100MB - Ksh 50, 200MB - Ksh 100, 500MB - Ksh 250, 1000MB - Ksh 500 (7-day validity)</li>
+    <li>Voice: 100 mins - Ksh 10 (Dial 5443# or *126#)</li>
+  </ul>
+
+  <h2>Weekly Bundles</h2>
+  <ul>
+    <li>SMS: 100 SMS - Ksh 20, 1000 SMS - Ksh 30, Unlimited SMS - Ksh 50</li>
+    <li>Data: 500MB - Ksh 100, 1.5GB - Ksh 250, 3.5GB - Ksh 500 (includes free WhatsApp)</li>
+    <li>BLAZE CYP: Valid 7 days, rollover with another weekly/monthly bundle</li>
+  </ul>
+
+  <h2>Monthly Bundles</h2>
+  <ul>
+    <li>SMS: 1500 SMS - Ksh 100, 3500 SMS - Ksh 200</li>
+    <li>Data: 400MB - Ksh 100, 1GB - Ksh 250, 2GB - Ksh 500, 8GB - Ksh 1000, 17GB - Ksh 2000, 27GB - Ksh 3000, 47GB - Ksh 5000, 100GB - Ksh 10000</li>
+  </ul>
+
+  <h2>All in One Bundles</h2>
+  <ul>
+    <li>8GB + 1000 SMS - Ksh 1000</li>
+    <li>17GB + 2000 SMS - Ksh 2000</li>
+    <li>27GB + 3000 SMS - Ksh 3000</li>
+    <li>47GB + 5000 SMS - Ksh 5000</li>
+    <li>100GB + 10000 SMS - Ksh 10000</li>
+  </ul>
+
+  <h2>BLAZE Monthly Bundles</h2>
+  <ul>
+    <li>1.25GB, 3GB, 7.5GB, 25GB (all valid for 30 days)</li>
+  </ul>
+</div>
+
+  </div>  <script>
     const bundleOptions = document.querySelectorAll('.bundle-option');
     const phoneInput = document.getElementById('phone');
-    const bundleInput = document.getElementById('bundleAmount');
     const statusDiv = document.getElementById('status');
-    let pollingInterval;function pollPayment(phone, amount, bundleText) {
-  statusDiv.textContent = "⏳ Waiting for payment confirmation...";
-  pollingInterval = setInterval(async () => {
-    const res = await fetch('/check-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone, amount })
-    });
-    const data = await res.json();
-    if (data.success) {
-      clearInterval(pollingInterval);
-      statusDiv.innerHTML = "✅ Payment received! Activating bundle...";
-      await fetch('/send-sms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone,
-          message: `✅ Your Quicktel ${bundleText} has been activated. Thank you!`
-        })
+    let pollingInterval;
+
+    function pollPayment(phone, amount, label) {
+      statusDiv.textContent = "⏳ Waiting for payment confirmation...";
+      pollingInterval = setInterval(async () => {
+        const res = await fetch('/check-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, amount, label })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          clearInterval(pollingInterval);
+          statusDiv.innerHTML = "✅ Payment received. Your " + label + " bundle is now active!";
+        }
+      }, 4000);
+    }
+
+    bundleOptions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const phone = phoneInput.value.trim();
+        const amount = btn.dataset.value;
+        const label = btn.dataset.label;
+
+        if (!/^2547\d{8}$/.test(phone)) {
+          alert("Enter a valid number (e.g. 2547XXXXXXXX)");
+          return;
+        }
+
+        statusDiv.innerHTML = `📲 Pay <strong>KSh ${amount}</strong> to Till <strong>8644442</strong><br>Using MPESA number: <strong>${phone}</strong><br><br>Checking for payment...`;
+
+        pollPayment(phone, amount, label);
       });
-      statusDiv.innerHTML += '<br>📩 SMS confirmation sent.';
-    }
-  }, 4000);
-}
-
-bundleOptions.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const phone = phoneInput.value.trim();
-    const amount = btn.dataset.value;
-    const bundleText = btn.textContent;
-
-    if (!/^2547\d{8}$/.test(phone)) {
-      alert("Enter valid phone number (e.g. 2547XXXXXXXX)");
-      return;
-    }
-
-    bundleInput.value = amount;
-    statusDiv.innerHTML = `📲 Now pay <strong>KSh ${amount}</strong> to Till <strong>8644442</strong><br>Using phone: ${phone}`;
-    pollPayment(phone, amount, bundleText);
-  });
-});
-
-  </script>
-</body>
-</html>// .env AT_API_KEY=your_africastalking_api_key AT_USERNAME=your_africastalking_username
-
+    });
+  </script></body>
+</html>
