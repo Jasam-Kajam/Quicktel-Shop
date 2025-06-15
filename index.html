@@ -66,7 +66,6 @@
     .bundle-option:hover {
       background-color: #00b44a;
     }
-
     .daily .bundle-option { background-color: #2196f3; }
     .weekly .bundle-option { background-color: orange; }
     .monthly .bundle-option { background-color: purple; }
@@ -175,7 +174,7 @@
 
     async function triggerPayment(amount) {
       const phone = phoneInput.value.trim();
-      if (!phone || !/^2547\d{8}$/.test(phone)) {
+      if (!phone || !/^2547\\d{8}$/.test(phone)) {
         alert("Please enter a valid phone number in format 2547XXXXXXXX");
         return;
       }
