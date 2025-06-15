@@ -25,10 +25,30 @@
       border-radius: 8px;
       border: none;
     }
-    button {
+    button, select optgroup, select option.highlighted {
       background-color: #00c853;
       color: white;
       font-weight: bold;
+    }
+    select optgroup[label^="Daily"] {
+      background-color: #2196f3;
+      color: #fff;
+    }
+    select optgroup[label^="Weekly"] {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    select optgroup[label^="Monthly"] {
+      background-color: #ff9800;
+      color: #fff;
+    }
+    select optgroup[label^="All"] {
+      background-color: #9c27b0;
+      color: #fff;
+    }
+    select optgroup[label^="BLAZE"] {
+      background-color: #e91e63;
+      color: #fff;
     }
     .whatsapp {
       margin-top: 20px;
@@ -38,15 +58,6 @@
       border-radius: 50px;
       text-decoration: none;
       color: white;
-    }
-    option.category {
-      font-weight: bold;
-      background-color: #2196f3;
-      color: #fff;
-    }
-    option.sub {
-      background-color: #eeeeee;
-      color: #000;
     }
   </style>
 </head>
@@ -59,48 +70,49 @@
 
   <label for="bundle">Choose a Bundle</label>
   <select id="bundle" name="bundle">
-    <option class="category" disabled>Daily Bundles</option>
-    <option class="sub" value="5">20 SMS - KSh 5</option>
-    <option class="sub" value="10">200 SMS - KSh 10</option>
-    <option class="sub" value="20">Unlimited SMS - KSh 20</option>
-    <option class="sub" value="50">100MB - KSh 50 (7 days)</option>
-    <option class="sub" value="100">200MB - KSh 100 (7 days)</option>
-    <option class="sub" value="250">500MB - KSh 250 (7 days)</option>
-    <option class="sub" value="500">1GB - KSh 500 (7 days)</option>
-    <option class="sub" value="10">100 mins - KSh 10</option>
-
-    <option class="category" disabled>Weekly Bundles</option>
-    <option class="sub" value="20">100 SMS - KSh 20</option>
-    <option class="sub" value="30">1000 SMS - KSh 30</option>
-    <option class="sub" value="50">Unlimited SMS - KSh 50</option>
-    <option class="sub" value="100">500MB - KSh 100 + Free WhatsApp</option>
-    <option class="sub" value="250">1.5GB - KSh 250 + Free WhatsApp</option>
-    <option class="sub" value="500">3.5GB - KSh 500 + Free WhatsApp</option>
-
-    <option class="category" disabled>Monthly Bundles</option>
-    <option class="sub" value="100">1500 SMS - KSh 100</option>
-    <option class="sub" value="200">3500 SMS - KSh 200</option>
-    <option class="sub" value="100">400MB - KSh 100</option>
-    <option class="sub" value="250">1GB - KSh 250</option>
-    <option class="sub" value="500">2GB - KSh 500</option>
-    <option class="sub" value="1000">8GB - KSh 1000</option>
-    <option class="sub" value="2000">17GB - KSh 2000</option>
-    <option class="sub" value="3000">27GB - KSh 3000</option>
-    <option class="sub" value="5000">47GB - KSh 5000</option>
-    <option class="sub" value="10000">100GB - KSh 10000</option>
-
-    <option class="category" disabled>All in One</option>
-    <option class="sub" value="1000">8GB + 1000 SMS - KSh 1000</option>
-    <option class="sub" value="2000">17GB + 2000 SMS - KSh 2000</option>
-    <option class="sub" value="3000">27GB + 3000 SMS - KSh 3000</option>
-    <option class="sub" value="5000">47GB + 5000 SMS - KSh 5000</option>
-    <option class="sub" value="10000">100GB + 10000 SMS - KSh 10000</option>
-
-    <option class="category" disabled>BLAZE Monthly Bundles</option>
-    <option class="sub" value="150">1.25GB - 30 days</option>
-    <option class="sub" value="300">3GB - 30 days</option>
-    <option class="sub" value="750">7.5GB - 30 days</option>
-    <option class="sub" value="2500">25GB - 30 days</option>
+    <optgroup label="Daily Bundles">
+      <option value="5">20 SMS - KSh 5</option>
+      <option value="10">200 SMS - KSh 10</option>
+      <option value="20">Unlimited SMS - KSh 20</option>
+      <option value="50">100MB - KSh 50</option>
+      <option value="100">200MB - KSh 100</option>
+      <option value="250">500MB - KSh 250</option>
+      <option value="500">1000MB - KSh 500</option>
+      <option value="10v">100 Voice Minutes - KSh 10</option>
+    </optgroup>
+    <optgroup label="Weekly Bundles">
+      <option value="20w">100 SMS - KSh 20</option>
+      <option value="30w">1000 SMS - KSh 30</option>
+      <option value="50w">Unlimited SMS - KSh 50</option>
+      <option value="100w">500MB - KSh 100</option>
+      <option value="250w">1.5GB - KSh 250</option>
+      <option value="500w">3.5GB - KSh 500</option>
+    </optgroup>
+    <optgroup label="Monthly Bundles">
+      <option value="100m">1500 SMS - KSh 100</option>
+      <option value="200m">3500 SMS - KSh 200</option>
+      <option value="100mdata">400MB - KSh 100</option>
+      <option value="250m">1GB - KSh 250</option>
+      <option value="500m">2GB - KSh 500</option>
+      <option value="1000m">8GB - KSh 1000</option>
+      <option value="2000m">17GB - KSh 2000</option>
+      <option value="3000m">27GB - KSh 3000</option>
+      <option value="5000m">47GB - KSh 5000</option>
+      <option value="10000m">100GB - KSh 10000</option>
+    </optgroup>
+    <optgroup label="All in One Bundles">
+      <option value="1000a">8GB + 1000 SMS - KSh 1000</option>
+      <option value="2000a">17GB + 2000 SMS - KSh 2000</option>
+      <option value="3000a">27GB + 3000 SMS - KSh 3000</option>
+      <option value="5000a">47GB + 5000 SMS - KSh 5000</option>
+      <option value="10000a">100GB + 10000 SMS - KSh 10000</option>
+    </optgroup>
+    <optgroup label="BLAZE Monthly Bundles">
+      <option value="blaze1">1.25GB for 30 days</option>
+      <option value="blaze2">3GB for 30 days</option>
+      <option value="blaze3">7.5GB for 30 days</option>
+      <option value="blaze4">25GB for 30 days</option>
+    </optgroup>
   </select>
 
   <button type="submit">Pay with M-PESA</button>
