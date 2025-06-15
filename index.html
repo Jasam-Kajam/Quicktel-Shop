@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,58 +39,77 @@
       text-decoration: none;
       color: white;
     }
+    optgroup {
+      font-weight: bold;
+      background-color: #333;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Quicktel Bundles</h1>
-    <p>Buy data bundles instantly</p>
+    <p>Buy data bundles instantly</p><form id="bundleForm">
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" placeholder="2547XXXXXXXX" required />
 
-    <form id="bundleForm">
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" placeholder="07XXXXXXXX" required />
+  <label for="bundle">Choose a Bundle</label>
+  <select id="bundle" name="bundle">
+    <optgroup label="Daily Bundles">
+      <option value="20">100MB - KSh 20 (Valid for 24hrs)</option>
+      <option value="50">500MB - KSh 50 (Valid for 24hrs)</option>
+      <option value="99">1GB - KSh 99 (Valid for 24hrs)</option>
+    </optgroup>
+    <optgroup label="Weekly Bundles">
+      <option value="150">1.5GB - KSh 150 (Valid for 3 days)</option>
+      <option value="250">2GB - KSh 250 (Valid for 7 days)</option>
+    </optgroup>
+    <optgroup label="Monthly Bundles">
+      <option value="500">5GB - KSh 500 (Valid for 30 days)</option>
+    </optgroup>
+  </select>
 
-      <label for="bundle">Choose a Bundle</label>
-      <select id="bundle" name="bundle">
-        <option value="20" data-validity="24 hours">150MB - KSh 20 (24hrs)</option>
-        <option value="50" data-validity="24 hours">500MB - KSh 50 (24hrs)</option>
-        <option value="99" data-validity="24 hours">1GB - KSh 99 (24hrs)</option>
-        <option value="199" data-validity="24 hours">2GB - KSh 199 (24hrs)</option>
-        <option value="500" data-validity="7 days">5GB - KSh 500 (7 days)</option>
-        <option value="1000" data-validity="30 days">10GB - KSh 1000 (30 days)</option>
-        <option value="2000" data-validity="30 days">25GB - KSh 2000 (30 days)</option>
-      </select>
+  <button type="submit">Pay with M-PESA</button>
+</form>
 
-      <button type="submit">Order Now</button>
-    </form>
+<div id="confirmation" style="display:none">
+  <h3>Payment Request Sent</h3>
+  <p>Check your phone (Sim: <strong><span id="confirmedPhone"></span></strong>) to enter M-PESA PIN.</p>
+</div>
 
-    <div id="confirmation" style="display:none">
-      <h3>Complete Your Order</h3>
-      <p>Send <strong>KSh <span id="amount"></span></strong> to Till Number <strong>8644442</strong></p>
-      <p>Bundle will be delivered shortly. Valid for <strong><span id="validity"></span></strong>.</p>
-    </div>
+<a class="whatsapp" href="https://wa.me/254729952483" target="_blank">
+  📱 Chat with us on WhatsApp
+</a>
 
-    <a class="whatsapp" href="https://wa.me/254729952483" target="_blank">
-      📱 Chat with us on WhatsApp
-    </a>
-  </div>
-
-  <script>
+  </div>  <script>
     const form = document.getElementById('bundleForm');
     const confirmation = document.getElementById('confirmation');
-    const amountSpan = document.getElementById('amount');
-    const validitySpan = document.getElementById('validity');
+    const confirmedPhone = document.getElementById('confirmedPhone');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const bundle = document.getElementById('bundle');
-      const amount = bundle.value;
-      const validity = bundle.options[bundle.selectedIndex].dataset.validity;
-      amountSpan.textContent = amount;
-      validitySpan.textContent = validity;
-      form.style.display = 'none';
-      confirmation.style.display = 'block';
+      const phone = document.getElementById('phone').value;
+      const amount = document.getElementById('bundle').value;
+
+      try {
+        const res = await fetch('/stkpush', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, amount })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.style.display = 'none';
+          confirmation.style.display = 'block';
+          confirmedPhone.textContent = phone;
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Something went wrong. Try again later.');
+        console.error(err);
+      }
     });
-  </script>
-</body>
+  </script></body>
 </html>
