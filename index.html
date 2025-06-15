@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quicktel Bundles</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: #fff;
       text-align: center;
       padding: 20px;
+      margin: 0;
     }
     .container {
-      max-width: 400px;
+      max-width: 600px;
       margin: auto;
       background-color: rgba(0, 0, 0, 0.4);
       padding: 20px;
@@ -21,33 +25,47 @@
     }
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
       border-radius: 8px;
       border: none;
+      font-size: 16px;
     }
     .category-title {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       margin-top: 20px;
     }
+    .bundle-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
     .bundle-option {
+      flex: 1 1 45%;
       background-color: #00c853;
-      padding: 10px;
-      margin: 5px 0;
+      padding: 12px;
       border-radius: 8px;
-      cursor: pointer;
       font-weight: bold;
+      cursor: pointer;
       transition: background 0.3s;
+      font-size: 15px;
+      min-width: 140px;
     }
     .bundle-option:hover {
       background-color: #00b44a;
     }
+
     .daily .bundle-option { background-color: #2196f3; }
     .weekly .bundle-option { background-color: orange; }
     .monthly .bundle-option { background-color: purple; }
     .allinone .bundle-option { background-color: teal; }
+
+    #confirmation {
+      margin-top: 20px;
+    }
 
     .whatsapp {
       margin-top: 20px;
@@ -57,6 +75,14 @@
       border-radius: 50px;
       text-decoration: none;
       color: white;
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 500px) {
+      .bundle-option {
+        flex: 1 1 100%;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -73,7 +99,7 @@
 
     <!-- Daily -->
     <div class="category-title">📅 Daily Bundles</div>
-    <div class="daily">
+    <div class="bundle-grid daily">
       <div class="bundle-option" data-value="5">20 SMS - KSh 5</div>
       <div class="bundle-option" data-value="10">200 SMS - KSh 10</div>
       <div class="bundle-option" data-value="20">Unlimited SMS - KSh 20</div>
@@ -86,7 +112,7 @@
 
     <!-- Weekly -->
     <div class="category-title">📆 Weekly Bundles</div>
-    <div class="weekly">
+    <div class="bundle-grid weekly">
       <div class="bundle-option" data-value="20">100 SMS - KSh 20</div>
       <div class="bundle-option" data-value="30">1000 SMS - KSh 30</div>
       <div class="bundle-option" data-value="50">Unlimited SMS - KSh 50</div>
@@ -97,7 +123,7 @@
 
     <!-- Monthly -->
     <div class="category-title">🗓️ Monthly Bundles</div>
-    <div class="monthly">
+    <div class="bundle-grid monthly">
       <div class="bundle-option" data-value="100">400MB - KSh 100</div>
       <div class="bundle-option" data-value="250">1GB - KSh 250</div>
       <div class="bundle-option" data-value="500">2GB - KSh 500</div>
@@ -108,9 +134,9 @@
       <div class="bundle-option" data-value="10000">100GB - KSh 10000</div>
     </div>
 
-    <!-- All in One -->
+    <!-- All-in-One -->
     <div class="category-title">🔁 All-in-One Bundles</div>
-    <div class="allinone">
+    <div class="bundle-grid allinone">
       <div class="bundle-option" data-value="1000">8GB + 1000 SMS - KSh 1000</div>
       <div class="bundle-option" data-value="2000">17GB + 2000 SMS - KSh 2000</div>
       <div class="bundle-option" data-value="3000">27GB + 3000 SMS - KSh 3000</div>
@@ -167,8 +193,6 @@
 
     bundleOptions.forEach(option => {
       option.addEventListener('click', () => {
-        bundleOptions.forEach(o => o.classList.remove('active'));
-        option.classList.add('active');
         const amount = option.dataset.value;
         triggerPayment(amount);
       });
