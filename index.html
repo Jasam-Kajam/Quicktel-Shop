@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quicktel Bundles</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background-color: #00c853;
+      color: white;
+      font-weight: bold;
+    }
+    .whatsapp {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #25D366;
+      padding: 10px 15px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quicktel Bundles</h1>
+    <p>Buy data bundles instantly</p>
+
+    <form id="bundleForm">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="07XXXXXXXX" required />
+
+      <label for="bundle">Choose a Bundle</label>
+      <select id="bundle" name="bundle">
+        <option value="20" data-validity="24 hours">150MB - KSh 20 (24hrs)</option>
+        <option value="50" data-validity="24 hours">500MB - KSh 50 (24hrs)</option>
+        <option value="99" data-validity="24 hours">1GB - KSh 99 (24hrs)</option>
+        <option value="199" data-validity="24 hours">2GB - KSh 199 (24hrs)</option>
+        <option value="500" data-validity="7 days">5GB - KSh 500 (7 days)</option>
+        <option value="1000" data-validity="30 days">10GB - KSh 1000 (30 days)</option>
+        <option value="2000" data-validity="30 days">25GB - KSh 2000 (30 days)</option>
+      </select>
+
+      <button type="submit">Order Now</button>
+    </form>
+
+    <div id="confirmation" style="display:none">
+      <h3>Complete Your Order</h3>
+      <p>Send <strong>KSh <span id="amount"></span></strong> to Till Number <strong>8644442</strong></p>
+      <p>Bundle will be delivered shortly. Valid for <strong><span id="validity"></span></strong>.</p>
+    </div>
+
+    <a class="whatsapp" href="https://wa.me/254729952483" target="_blank">
+      📱 Chat with us on WhatsApp
+    </a>
+  </div>
+
+  <script>
+    const form = document.getElementById('bundleForm');
+    const confirmation = document.getElementById('confirmation');
+    const amountSpan = document.getElementById('amount');
+    const validitySpan = document.getElementById('validity');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const bundle = document.getElementById('bundle');
+      const amount = bundle.value;
+      const validity = bundle.options[bundle.selectedIndex].dataset.validity;
+      amountSpan.textContent = amount;
+      validitySpan.textContent = validity;
+      form.style.display = 'none';
+      confirmation.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
