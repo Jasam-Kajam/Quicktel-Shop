@@ -127,8 +127,8 @@
 
     <!-- Bundle Categories -->
     <div class="category-title">📆 Daily Bundles</div>
-    <div class="bundle-option daily" data-value="5" data-label="20 SMS">20 SMS - KSh 5</div>
-    <div class="bundle-option daily" data-value="10" data-label="200 SMS">200 SMS - KSh 10</div>
+    <div class="bundle-option daily" data-value="5" data-label="20 SMS">20 SMS - KSh 4</div>
+    <div class="bundle-option daily" data-value="10" data-label="200 SMS">200 SMS - KSh 9</div>
     <div class="bundle-option daily" data-value="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
     <div class="bundle-option daily" data-value="50" data-label="100MB (7 days)">100MB - KSh 50</div>
     <div class="bundle-option daily" data-value="100" data-label="200MB (7 days)">200MB - KSh 100</div>
@@ -208,8 +208,8 @@
         const amount = btn.dataset.value;
         const label = btn.dataset.label;
         const phone = phoneInput.value.trim();
-        if (!/^2547\d{8}$/.test(phone)) {
-          alert("Enter a valid MPESA number (e.g. 2547XXXXXXXX)");
+        if (!/^254\d{9}$/.test(phone)) {
+          alert("Enter a valid MPESA number (e.g. 254XXXXXXXXX)");
           return;
         }
 
