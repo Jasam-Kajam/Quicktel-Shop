@@ -297,24 +297,7 @@
       statusDiv.textContent = "✅ Payment confirmed from pasted message!";
     });
 
-    document.getElementById('mpesa-message').addEventListener('paste', (event) => {
-      setTimeout(() => {
-        const pasted = event.target.value;
-        if (/MPESA/.test(pasted)) {
-          statusDiv.textContent = "📩 MPESA message detected. Click 'Confirm Payment'.";
-        }
-      }, 100);
-    });
-  </script>
-</body>
-</html>
-
-  <div style="margin-top: 30px;">
-    <h3 style="color: yellow;">📋 Paste MPESA Message</h3>
-    <textarea id="mpesaMessage" placeholder="Paste your MPESA message here..." rows="4"></textarea>
-    <button onclick="confirmPayment()">✅ Confirm Payment</button>
-    <div id="messageStatus" class="payment-status"></div>
-  </div>
+    
 
   <script>
     // Auto-paste detection on page load
@@ -324,7 +307,7 @@
         const mpesaBox = document.getElementById('mpesaMessage');
         if (text.includes("MPESA") && text.match(/(?:Confirmed|sent to)/i)) {
           mpesaBox.value = text;
-          document.getElementById("messageStatus").innerText = "✅ MPESA message detected and pasted!";
+          document.getElementById("messageStatus").innerText = "📋 MPESA message detected and pasted!";
           document.getElementById("messageStatus").style.color = "lightgreen";
         }
       } catch (err) {
