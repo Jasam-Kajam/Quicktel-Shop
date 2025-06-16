@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,112 +12,142 @@
       padding: 0;
       margin: 0;
       text-align: center;
-    }.logo-bar {
-  background-color: #fff;
-  padding: 20px 0;
-  margin-bottom: 10px;
-}
+    }
 
-.logo-bar h1 {
-  font-size: 36px;
-  font-family: 'Times New Roman', Times, serif;
-  color: #333;
-  font-weight: bold;
-  margin: 0;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 2px #ccc;
-}
+    .logo-bar {
+      background-color: #fff;
+      padding: 20px 0;
+      margin-bottom: 10px;
+    }
 
-.container {
-  background: rgba(0,0,0,0.4);
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 12px;
-}
+    .logo-bar h1 {
+      font-size: 36px;
+      font-family: 'Times New Roman', Times, serif;
+      color: #333;
+      font-weight: bold;
+      margin: 0;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px #ccc;
+    }
 
-.welcome-message {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  animation: colorPulse 3s infinite;
-}
+    .container {
+      background: rgba(0,0,0,0.4);
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+    }
 
-@keyframes colorPulse {
-  0%   { color: #ffd700; }
-  25%  { color: #00e676; }
-  50%  { color: #29b6f6; }
-  75%  { color: #ff4081; }
-  100% { color: #ffd700; }
-}
+    .welcome-message {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      animation: colorPulse 3s infinite;
+    }
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-}
+    @keyframes colorPulse {
+      0%   { color: #ffd700; }
+      25%  { color: #00e676; }
+      50%  { color: #29b6f6; }
+      75%  { color: #ff4081; }
+      100% { color: #ffd700; }
+    }
 
-.bundle-option {
-  margin: 8px;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  transition: transform 0.2s ease-in-out;
-}
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
 
-.bundle-option:hover {
-  filter: brightness(90%);
-  transform: scale(1.02);
-}
+    .bundle-option {
+      margin: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.2s ease-in-out;
+    }
 
-.category-title {
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  font-size: 22px;
-  margin-top: 30px;
-}
+    .bundle-option:hover {
+      filter: brightness(90%);
+      transform: scale(1.02);
+    }
 
-.daily { background: #00c853; }
-.weekly { background: #2196f3; }
-.monthly { background: #9c27b0; }
-.allinone { background: #fb8c00; }
+    .category-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 22px;
+      margin-top: 30px;
+    }
 
-#status {
-  margin-top: 20px;
-  font-weight: bold;
-}
+    .daily { background: #00c853; }
+    .weekly { background: #2196f3; }
+    .monthly { background: #9c27b0; }
+    .allinone { background: #fb8c00; }
 
-.whatsapp-button {
-  display: inline-block;
-  margin-top: 30px;
-  background-color: #25D366;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-}
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
 
+    .whatsapp-button {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* USSD Section Styles */
+    .ussd-section {
+      margin: 20px 0;
+      font-size: 18px;
+      background: #fff;
+      color: #000;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .ussd-button {
+      display: inline-block;
+      background-color: #6200ea;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
   </style>
 </head>
-<body>  <!-- Logo Bar -->  <div class="logo-bar">
+<body>
+
+  <!-- Logo Bar -->
+  <div class="logo-bar">
     <h1>QUICKTEL</h1>
-  </div>  <div class="container">
+  </div>
+
+  <div class="container">
     <div class="welcome-message">🎉 Welcome to Quicktel Bundles!</div>
-    <p style="margin-top: -10px; font-size: 18px;">Your one-stop shop for affordable bundles</p><h2>Quicktel Bundles</h2>
-<p>Select a bundle below. You'll be guided to pay and receive your bundle instantly!</p>
+    <p style="margin-top: -10px; font-size: 18px;">Your one-stop shop for affordable bundles</p>
 
-<form id="bundleForm">
-  <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
-</form>
+    <h2>Quicktel Bundles</h2>
+    <p>Select a bundle below. You'll be guided to pay and receive your bundle instantly!</p>
 
-<!-- DAILY BUNDLES -->
+    <form id="bundleForm">
+      <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
+    </form>
+
+    <!-- Bundle Categories -->
     <div class="category-title">📆 Daily Bundles</div>
     <div class="bundle-option daily" data-value="5" data-label="20 SMS">20 SMS - KSh 5</div>
     <div class="bundle-option daily" data-value="10" data-label="200 SMS">200 SMS - KSh 10</div>
@@ -127,7 +158,6 @@ input {
     <div class="bundle-option daily" data-value="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
     <div class="bundle-option daily" data-value="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
 
-    <!-- WEEKLY BUNDLES -->
     <div class="category-title">📅 Weekly Bundles</div>
     <div class="bundle-option weekly" data-value="20" data-label="100 SMS">100 SMS - KSh 20</div>
     <div class="bundle-option weekly" data-value="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
@@ -135,9 +165,8 @@ input {
     <div class="bundle-option weekly" data-value="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
     <div class="bundle-option weekly" data-value="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
     <div class="bundle-option weekly" data-value="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
-    <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
+    <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP - KSh 150</div>
 
-    <!-- MONTHLY BUNDLES -->
     <div class="category-title">🗓️ Monthly Bundles</div>
     <div class="bundle-option monthly" data-value="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
     <div class="bundle-option monthly" data-value="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
@@ -150,14 +179,12 @@ input {
     <div class="bundle-option monthly" data-value="5000" data-label="47GB">47GB - KSh 5,000</div>
     <div class="bundle-option monthly" data-value="10000" data-label="100GB">100GB - KSh 10,000</div>
 
-    <!-- BLAZE Monthly Bundles -->
     <div class="category-title">🔥 BLAZE Monthly Bundles</div>
     <div class="bundle-option monthly" data-value="150" data-label="1.25GB (30 Days)">1.25GB - KSh 150</div>
     <div class="bundle-option monthly" data-value="300" data-label="3GB (30 Days)">3GB - KSh 300</div>
     <div class="bundle-option monthly" data-value="750" data-label="7.5GB (30 Days)">7.5GB - KSh 750</div>
     <div class="bundle-option monthly" data-value="2000" data-label="25GB (30 Days)">25GB - KSh 2,000</div>
 
-    <!-- ALL-IN-ONE BUNDLES -->
     <div class="category-title">📦 All in One Bundles</div>
     <div class="bundle-option allinone" data-value="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
     <div class="bundle-option allinone" data-value="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
@@ -165,13 +192,23 @@ input {
     <div class="bundle-option allinone" data-value="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</div>
     <div class="bundle-option allinone" data-value="10000" data-label="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</div>
 
-<div id="status"></div>
+    <!-- USSD Section -->
+    <div class="ussd-section">
+      <strong>📞 Dial <span style="color: green;">*384*26217#</span> to access Quicktel services directly via USSD</strong>
+    </div>
 
-<a href="https://wa.me/254113048974" target="_blank" class="whatsapp-button">
-  📱 Chat on WhatsApp
-</a>
+    <a href="tel:*384*26217#" class="ussd-button">
+      📲 Dial USSD Code
+    </a>
 
-  </div>  <script>
+    <div id="status"></div>
+
+    <a href="https://wa.me/254113048974" target="_blank" class="whatsapp-button">
+      📱 Chat on WhatsApp
+    </a>
+  </div>
+
+  <script>
     const bundleOptions = document.querySelectorAll('.bundle-option');
     const phoneInput = document.getElementById('phone');
     const statusDiv = document.getElementById('status');
@@ -210,80 +247,25 @@ input {
         const newTab = window.open('', '_blank');
         newTab.document.write(`
           <html>
-            <head>
-              <title>Pay via Till</title>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  background: linear-gradient(to right, #6a11cb, #2575fc);
-                  color: #fff;
-                  text-align: center;
-                  padding: 50px 20px;
-                }
-                h2 { font-size: 32px; margin-bottom: 20px; }
-                p, strong { font-size: 20px; line-height: 1.6; }
-                .till-box {
-                  font-size: 30px;
-                  margin: 25px auto;
-                  background: #ffffff;
-                  color: #333;
-                  padding: 18px;
-                  width: fit-content;
-                  border-radius: 10px;
-                  font-weight: bold;
-                }
-                img { margin-top: 20px; width: 200px; height: 200px; }
-                textarea {
-                  width: 80%;
-                  height: 100px;
-                  margin-top: 20px;
-                  font-size: 16px;
-                  border-radius: 8px;
-                  padding: 10px;
-                }
-                button {
-                  background: #00c853;
-                  border: none;
-                  padding: 12px 20px;
-                  font-size: 18px;
-                  color: #fff;
-                  border-radius: 8px;
-                  margin-top: 20px;
-                  cursor: pointer;
-                }
-              </style></head>
-        <body>
-          <h2>📲 Complete Payment</h2>
-          <p>You're purchasing: <strong>${label}</strong></p>
-          <p>Amount: <strong>KSh ${amount}</strong></p>
-          <p>Please pay to the MPESA Till Number:</p>
-          <div class="till-box">8644442</div>
-          <p>Using your number: <strong>${phone}</strong></p>
-          <p>Paste your confirmation message below:</p>
-          <textarea id="mpesaMessage" placeholder="Paste MPESA confirmation here..."></textarea>
-          <button onclick="
-            const msg = document.getElementById('mpesaMessage').value;
-            if (!msg || msg.length < 5) { alert('Please paste a valid message'); return; }
-            fetch('/confirm-payment', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ phone: '${phone}', label: '${label}', message: msg })
-            }).then(res => res.json()).then(data => {
-              alert(data.message || 'Confirmation sent.');
-            });
-          ">✅ Confirm & Send</button>
-          <p style="margin-top:30px; font-size:14px;">After confirmation, your bundle will be activated.</p>
-          <p>Or scan this QR code to pay:</p>
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=8644442" alt="Pay Till QR" />
-        </body>
-      </html>
-    `);
+            <head><title>Pay via Till</title></head>
+            <body style="font-family: Arial; background: #f9f9f9; text-align: center; padding: 40px;">
+              <h2 style="font-size: 24px;">Complete Payment</h2>
+              <p style="font-size: 18px;">You're purchasing: <strong>${label}</strong></p>
+              <p style="font-size: 18px;">Amount: <strong>KSh ${amount}</strong></p>
+              <p style="font-size: 18px;">Please pay to the MPESA Till Number:</p>
+              <div style="font-size: 26px; margin: 20px; background: #e0e0e0; padding: 15px; border-radius: 8px;">8644442</div>
+              <p style="font-size: 18px;">Using your number: <strong>${phone}</strong></p>
+              <p style="font-size: 18px;">After payment, return to the previous tab.</p>
+              <p style="font-size: 18px;">Or scan this QR code to pay:</p>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=8644442" alt="Pay Till QR" />
+            </body>
+          </html>
+        `);
 
-    statusDiv.innerHTML = `🟢 Waiting for payment of KSh ${amount} from ${phone} for ${label}...`;
-    pollPayment(phone, amount, label);
-  });
-});
-
+        statusDiv.innerHTML = `🟢 Waiting for payment of KSh ${amount} from ${phone} for ${label}...`;
+        pollPayment(phone, amount, label);
+      });
+    });
   </script>
 </body>
 </html>
