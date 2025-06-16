@@ -9,9 +9,11 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: #fff;
-      padding: 20px;
+      padding: 0;
+      margin: 0;
       text-align: center;
     }
+
     .container {
       background: rgba(0,0,0,0.4);
       max-width: 700px;
@@ -19,12 +21,39 @@
       padding: 20px;
       border-radius: 12px;
     }
+
+    .logo-banner {
+      position: relative;
+      width: 100%;
+      max-height: 200px;
+      overflow: hidden;
+    }
+
+    .logo-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .logo-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 36px;
+      font-family: 'Times New Roman', serif;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px #000000;
+    }
+
     .welcome-message {
       font-size: 28px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin: 20px 0 10px;
       animation: colorPulse 3s infinite;
     }
+
     @keyframes colorPulse {
       0%   { color: #ffd700; }
       25%  { color: #00e676; }
@@ -32,6 +61,7 @@
       75%  { color: #ff4081; }
       100% { color: #ffd700; }
     }
+
     input {
       width: 100%;
       padding: 12px;
@@ -40,6 +70,7 @@
       border: none;
       font-size: 16px;
     }
+
     .bundle-option {
       margin: 8px;
       padding: 12px;
@@ -49,24 +80,29 @@
       color: white;
       transition: transform 0.2s ease-in-out;
     }
+
     .bundle-option:hover {
       filter: brightness(90%);
       transform: scale(1.02);
     }
+
     .category-title {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
       font-size: 22px;
       margin-top: 30px;
     }
+
     .daily { background: #00c853; }
     .weekly { background: #2196f3; }
     .monthly { background: #9c27b0; }
     .allinone { background: #fb8c00; }
+
     #status {
       margin-top: 20px;
       font-weight: bold;
     }
+
     .whatsapp-button {
       display: inline-block;
       margin-top: 30px;
@@ -78,21 +114,27 @@
       font-size: 18px;
       font-weight: bold;
     }
-    .logo {
-      max-width: 150px;
-      margin-bottom: 15px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+
+    #admin-panel {
+      display: none;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Logo Upload Section -->
-    <img id="logo-preview" src="https://via.placeholder.com/150x50?text=Quicktel+Logo" alt="Quicktel Logo" class="logo" />
-    <input type="file" id="logo-upload" accept="image/*" style="margin-top: 10px;" />
 
+  <!-- Full-width Logo Banner -->
+  <div class="logo-banner">
+    <img id="site-logo" src="https://via.placeholder.com/1200x200?text=QUICKTEL+LOGO" alt="Quicktel Logo" />
+    <div class="logo-text">QUICKTEL LOGO</div>
+  </div>
+
+  <!-- Admin Logo Upload (hidden) -->
+  <div id="admin-panel">
+    <input type="file" id="logo-upload" accept="image/*" />
+  </div>
+
+  <div class="container">
     <div class="welcome-message">🎉 Welcome to Quicktel Bundles!</div>
     <p style="margin-top: -10px; font-size: 18px;">Your one-stop shop for affordable bundles</p>
 
@@ -103,7 +145,7 @@
       <input type="tel" id="phone" placeholder="Enter MPESA phone (e.g. 2547...)" required />
     </form>
 
-    <!-- DAILY BUNDLES -->
+    <!-- Bundle Categories -->
     <div class="category-title">📆 Daily Bundles</div>
     <div class="bundle-option daily" data-value="5" data-label="20 SMS">20 SMS - KSh 5</div>
     <div class="bundle-option daily" data-value="10" data-label="200 SMS">200 SMS - KSh 10</div>
@@ -114,7 +156,6 @@
     <div class="bundle-option daily" data-value="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
     <div class="bundle-option daily" data-value="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
 
-    <!-- WEEKLY BUNDLES -->
     <div class="category-title">📅 Weekly Bundles</div>
     <div class="bundle-option weekly" data-value="20" data-label="100 SMS">100 SMS - KSh 20</div>
     <div class="bundle-option weekly" data-value="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
@@ -124,7 +165,6 @@
     <div class="bundle-option weekly" data-value="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
     <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
 
-    <!-- MONTHLY BUNDLES -->
     <div class="category-title">🗓️ Monthly Bundles</div>
     <div class="bundle-option monthly" data-value="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
     <div class="bundle-option monthly" data-value="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
@@ -137,14 +177,12 @@
     <div class="bundle-option monthly" data-value="5000" data-label="47GB">47GB - KSh 5,000</div>
     <div class="bundle-option monthly" data-value="10000" data-label="100GB">100GB - KSh 10,000</div>
 
-    <!-- BLAZE Monthly Bundles -->
     <div class="category-title">🔥 BLAZE Monthly Bundles</div>
     <div class="bundle-option monthly" data-value="150" data-label="1.25GB (30 Days)">1.25GB - KSh 150</div>
     <div class="bundle-option monthly" data-value="300" data-label="3GB (30 Days)">3GB - KSh 300</div>
     <div class="bundle-option monthly" data-value="750" data-label="7.5GB (30 Days)">7.5GB - KSh 750</div>
     <div class="bundle-option monthly" data-value="2000" data-label="25GB (30 Days)">25GB - KSh 2,000</div>
 
-    <!-- ALL-IN-ONE BUNDLES -->
     <div class="category-title">📦 All in One Bundles</div>
     <div class="bundle-option allinone" data-value="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
     <div class="bundle-option allinone" data-value="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
@@ -159,7 +197,6 @@
     </a>
   </div>
 
-  <!-- Payment Script -->
   <script>
     const bundleOptions = document.querySelectorAll('.bundle-option');
     const phoneInput = document.getElementById('phone');
@@ -223,32 +260,39 @@
       });
     });
 
-    // 🔄 Logo Upload Logic
-    document.getElementById('logo-upload').addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('logo-preview').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Please select a valid image file.');
-      }
-    });
-  </script>
+    // Secret admin code unlock for logo upload
+    const logoUpload = document.getElementById('logo-upload');
+    const logoImg = document.getElementById('site-logo');
+    const adminPanel = document.getElementById('admin-panel');
 
-  <!-- Tawk.to Live Chat (optional, replace ID) -->
-  <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/your_tawk_property_id/default';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
+    window.addEventListener('keydown', () => {
+      const secretCode = 'admin123';
+      let input = '';
+      window.addEventListener('keypress', function handler(event) {
+        input += event.key;
+        if (input.length > secretCode.length) {
+          input = input.slice(input.length - secretCode.length);
+        }
+        if (input === secretCode) {
+          adminPanel.style.display = 'block';
+          alert("✅ Admin panel unlocked!");
+          window.removeEventListener('keypress', handler);
+        }
+      });
+    });
+
+    if (logoUpload) {
+      logoUpload.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            logoImg.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   </script>
 </body>
 </html>
