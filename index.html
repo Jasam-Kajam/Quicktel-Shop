@@ -89,8 +89,9 @@
 </head>
 <body>
   <div class="container">
-    <!-- Logo -->
-    <img src="https://via.placeholder.com/150x50?text=Quicktel+Logo" alt="Quicktel Logo" class="logo"/>
+    <!-- Logo Upload Section -->
+    <img id="logo-preview" src="https://via.placeholder.com/150x50?text=Quicktel+Logo" alt="Quicktel Logo" class="logo" />
+    <input type="file" id="logo-upload" accept="image/*" style="margin-top: 10px;" />
 
     <div class="welcome-message">🎉 Welcome to Quicktel Bundles!</div>
     <p style="margin-top: -10px; font-size: 18px;">Your one-stop shop for affordable bundles</p>
@@ -158,6 +159,7 @@
     </a>
   </div>
 
+  <!-- Payment Script -->
   <script>
     const bundleOptions = document.querySelectorAll('.bundle-option');
     const phoneInput = document.getElementById('phone');
@@ -193,8 +195,8 @@
         const label = btn.dataset.label;
         const phone = phoneInput.value.trim();
 
-        if (!/^254\d{9}$/.test(phone)) {
-          alert("Enter a valid MPESA number (e.g. 254XXXXXXXXX)");
+        if (!/^2547\d{8}$/.test(phone)) {
+          alert("Enter a valid MPESA number (e.g. 2547XXXXXXXX)");
           return;
         }
 
@@ -220,9 +222,23 @@
         pollPayment(phone, amount, label);
       });
     });
+
+    // 🔄 Logo Upload Logic
+    document.getElementById('logo-upload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('logo-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please select a valid image file.');
+      }
+    });
   </script>
 
-  <!-- Live Chat (Tawk.to) -->
+  <!-- Tawk.to Live Chat (optional, replace ID) -->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
