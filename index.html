@@ -246,21 +246,55 @@
 
         const newTab = window.open('', '_blank');
         newTab.document.write(`
-          <html>
-            <head><title>Pay via Till</title></head>
-            <body style="font-family: Arial; background: #f9f9f9; text-align: center; padding: 40px;">
-              <h2 style="font-size: 24px;">Complete Payment</h2>
-              <p style="font-size: 18px;">You're purchasing: <strong>${label}</strong></p>
-              <p style="font-size: 18px;">Amount: <strong>KSh ${amount}</strong></p>
-              <p style="font-size: 18px;">Please pay to the MPESA Till Number:</p>
-              <div style="font-size: 26px; margin: 20px; background: #e0e0e0; padding: 15px; border-radius: 8px;">8644442</div>
-              <p style="font-size: 18px;">Using your number: <strong>${phone}</strong></p>
-              <p style="font-size: 18px;">After payment, return to the previous tab.</p>
-              <p style="font-size: 18px;">Or scan this QR code to pay:</p>
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=8644442" alt="Pay Till QR" />
-            </body>
-          </html>
-        `);
+          <head>
+      <title>Pay via Till</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: linear-gradient(to right, #6a11cb, #2575fc);
+          color: white;
+          text-align: center;
+          padding: 40px;
+        }
+        .till {
+          font-size: 28px;
+          margin: 20px auto;
+          background: #ffd700;
+          color: #000;
+          padding: 15px;
+          border-radius: 10px;
+          display: inline-block;
+          font-weight: bold;
+        }
+        h2 {
+          font-size: 28px;
+          margin-bottom: 10px;
+          color: #ffeb3b;
+          text-shadow: 1px 1px 2px #000;
+        }
+        p {
+          font-size: 18px;
+        }
+        .qr {
+          margin-top: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>💸 Complete Payment</h2>
+      <p>You're purchasing: <strong>${label}</strong></p>
+      <p>Amount: <strong>KSh ${amount}</strong></p>
+      <p>Please pay to the MPESA Till Number below:</p>
+      <div class="till">8644442</div>
+      <p>Use your number: <strong>${phone}</strong></p>
+      <p>After payment, return to the previous tab to confirm.</p>
+      <div class="qr">
+        <p>Or scan this QR code to pay:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=8644442" alt="Pay Till QR" />
+      </div>
+    </body>
+  </html>
+`);
 
         statusDiv.innerHTML = `🟢 Waiting for payment of KSh ${amount} from ${phone} for ${label}...`;
         pollPayment(phone, amount, label);
