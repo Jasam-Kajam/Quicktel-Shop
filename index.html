@@ -14,6 +14,22 @@
       text-align: center;
     }
 
+    .logo-bar {
+      background-color: #fff;
+      padding: 20px 0;
+      margin-bottom: 10px;
+    }
+
+    .logo-bar h1 {
+      font-size: 36px;
+      font-family: 'Times New Roman', Times, serif;
+      color: #333;
+      font-weight: bold;
+      margin: 0;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
     .container {
       background: rgba(0,0,0,0.4);
       max-width: 700px;
@@ -22,35 +38,10 @@
       border-radius: 12px;
     }
 
-    .logo-banner {
-      position: relative;
-      width: 100%;
-      max-height: 200px;
-      overflow: hidden;
-    }
-
-    .logo-banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .logo-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 36px;
-      font-family: 'Times New Roman', serif;
-      font-weight: bold;
-      color: #ffffff;
-      text-shadow: 2px 2px 5px #000000;
-    }
-
     .welcome-message {
       font-size: 28px;
       font-weight: bold;
-      margin: 20px 0 10px;
+      margin-bottom: 10px;
       animation: colorPulse 3s infinite;
     }
 
@@ -114,31 +105,20 @@
       font-size: 18px;
       font-weight: bold;
     }
-
-    #admin-panel {
-      display: none;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Full-width Logo Banner -->
-  <div class="logo-banner">
-    <img id="site-logo" src="https://via.placeholder.com/1200x200?text=QUICKTEL" alt="Quicktel Logo" />
-    <div class="logo-text">QUICKTEL</div>
-  </div>
-
-  <!-- Admin Logo Upload (hidden) -->
-  <div id="admin-panel">
-    <input type="file" id="logo-upload" accept="image/*" />
+  <!-- Logo Bar -->
+  <div class="logo-bar">
+    <h1>QUICKTEL</h1>
   </div>
 
   <div class="container">
     <div class="welcome-message">🎉 Welcome to Quicktel Bundles!</div>
     <p style="margin-top: -10px; font-size: 18px;">Your one-stop shop for affordable bundles</p>
 
-    <h1>Quicktel Bundles</h1>
+    <h2>Quicktel Bundles</h2>
     <p>Select a bundle below. You'll be guided to pay and receive your bundle instantly!</p>
 
     <form id="bundleForm">
@@ -163,7 +143,7 @@
     <div class="bundle-option weekly" data-value="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
     <div class="bundle-option weekly" data-value="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
     <div class="bundle-option weekly" data-value="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
-    <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
+    <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP - KSh 150</div>
 
     <div class="category-title">🗓️ Monthly Bundles</div>
     <div class="bundle-option monthly" data-value="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
@@ -224,15 +204,11 @@
 
     bundleOptions.forEach(btn => {
       btn.addEventListener('click', () => {
-        if ("vibrate" in navigator) {
-          navigator.vibrate(50);
-        }
-
+        if ("vibrate" in navigator) navigator.vibrate(50);
         const amount = btn.dataset.value;
         const label = btn.dataset.label;
         const phone = phoneInput.value.trim();
-
-        if (!/^254\d{9}$/.test(phone)) {
+        if (!/^2547\d{8}$/.test(phone)) {
           alert("Enter a valid MPESA number (e.g. 2547XXXXXXXX)");
           return;
         }
@@ -259,40 +235,6 @@
         pollPayment(phone, amount, label);
       });
     });
-
-    // Secret admin code unlock for logo upload
-    const logoUpload = document.getElementById('logo-upload');
-    const logoImg = document.getElementById('site-logo');
-    const adminPanel = document.getElementById('admin-panel');
-
-    window.addEventListener('keydown', () => {
-      const secretCode = 'admin123';
-      let input = '';
-      window.addEventListener('keypress', function handler(event) {
-        input += event.key;
-        if (input.length > secretCode.length) {
-          input = input.slice(input.length - secretCode.length);
-        }
-        if (input === secretCode) {
-          adminPanel.style.display = 'block';
-          alert("✅ Admin panel unlocked!");
-          window.removeEventListener('keypress', handler);
-        }
-      });
-    });
-
-    if (logoUpload) {
-      logoUpload.addEventListener('change', function () {
-        const file = this.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            logoImg.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
   </script>
 </body>
 </html>
