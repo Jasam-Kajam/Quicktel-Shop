@@ -50,8 +50,15 @@
             padding: 10px;
             border-radius: 10px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
         .bundle-option:hover {
+            background: #f107a3;
+            color: #fff;
+        }
+        .bundle-option.selected {
+            border: 3px solid yellow;
+            transform: scale(1.05);
             background: #f107a3;
             color: #fff;
         }
@@ -70,54 +77,20 @@
         <input type="text" id="phone" placeholder="Enter your phone number" required>
 
         <!-- DAILY BUNDLES -->
-    <div class="category-title">📆 Daily Bundles</div>
-    <div class="bundle-option daily" data-value="5" data-label="20 SMS">20 SMS - KSh 5</div>
-    <div class="bundle-option daily" data-value="10" data-label="200 SMS">200 SMS - KSh 10</div>
-    <div class="bundle-option daily" data-value="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
-    <div class="bundle-option daily" data-value="50" data-label="100MB (7 days)">100MB - KSh 50</div>
-    <div class="bundle-option daily" data-value="100" data-label="200MB (7 days)">200MB - KSh 100</div>
-    <div class="bundle-option daily" data-value="250" data-label="500MB (7 days)">500MB - KSh 250</div>
-    <div class="bundle-option daily" data-value="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
-    <div class="bundle-option daily" data-value="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
+        <div class="category-title">📆 Daily Bundles</div>
+        <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
+        <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
+        <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
 
-    <!-- WEEKLY BUNDLES -->
-    <div class="category-title">📅 Weekly Bundles</div>
-    <div class="bundle-option weekly" data-value="20" data-label="100 SMS">100 SMS - KSh 20</div>
-    <div class="bundle-option weekly" data-value="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
-    <div class="bundle-option weekly" data-value="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
-    <div class="bundle-option weekly" data-value="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
-    <div class="bundle-option weekly" data-value="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
-    <div class="bundle-option weekly" data-value="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
-    <div class="bundle-option weekly" data-value="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
+        <!-- WEEKLY BUNDLES -->
+        <div class="category-title">📅 Weekly Bundles</div>
+        <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
+        <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
 
-    <!-- MONTHLY BUNDLES -->
-    <div class="category-title">🗓️ Monthly Bundles</div>
-    <div class="bundle-option monthly" data-value="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
-    <div class="bundle-option monthly" data-value="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
-    <div class="bundle-option monthly" data-value="100" data-label="400MB">400MB - KSh 100</div>
-    <div class="bundle-option monthly" data-value="250" data-label="1GB">1GB - KSh 250</div>
-    <div class="bundle-option monthly" data-value="500" data-label="2GB">2GB - KSh 500</div>
-    <div class="bundle-option monthly" data-value="1000" data-label="8GB">8GB - KSh 1,000</div>
-    <div class="bundle-option monthly" data-value="2000" data-label="17GB">17GB - KSh 2,000</div>
-    <div class="bundle-option monthly" data-value="3000" data-label="27GB">27GB - KSh 3,000</div>
-    <div class="bundle-option monthly" data-value="5000" data-label="47GB">47GB - KSh 5,000</div>
-    <div class="bundle-option monthly" data-value="10000" data-label="100GB">100GB - KSh 10,000</div>
-
-    <!-- BLAZE Monthly Bundles -->
-    <div class="category-title">🔥 BLAZE Monthly Bundles</div>
-    <div class="bundle-option monthly" data-value="150" data-label="1.25GB (30 Days)">1.25GB - KSh 150</div>
-    <div class="bundle-option monthly" data-value="300" data-label="3GB (30 Days)">3GB - KSh 300</div>
-    <div class="bundle-option monthly" data-value="750" data-label="7.5GB (30 Days)">7.5GB - KSh 750</div>
-    <div class="bundle-option monthly" data-value="2000" data-label="25GB (30 Days)">25GB - KSh 2,000</div>
-
-    <!-- ALL-IN-ONE BUNDLES -->
-    <div class="category-title">📦 All in One Bundles</div>
-    <div class="bundle-option allinone" data-value="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
-    <div class="bundle-option allinone" data-value="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
-    <div class="bundle-option allinone" data-value="3000" data-label="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</div>
-    <div class="bundle-option allinone" data-value="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</div>
-    <div class="bundle-option allinone" data-value="10000" data-label="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</div>
-
+        <!-- MONTHLY BUNDLES -->
+        <div class="category-title">🗓️ Monthly Bundles</div>
+        <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
+        <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
 
         <button id="payButton">Proceed to Pay</button>
         <p id="status"></p>
@@ -129,8 +102,8 @@
 
         document.querySelectorAll('.bundle-option').forEach(option => {
             option.addEventListener('click', () => {
-                document.querySelectorAll('.bundle-option').forEach(o => o.style.border = 'none');
-                option.style.border = '2px solid yellow';
+                document.querySelectorAll('.bundle-option').forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
                 selectedBundle = {
                     label: option.getAttribute('data-label'),
                     price: option.getAttribute('data-price')
@@ -139,7 +112,7 @@
         });
 
         document.getElementById('payButton').addEventListener('click', () => {
-            const phone = document.getElementById('phone').value;
+            const phone = document.getElementById('phone').value.trim();
             if (!phone || !selectedBundle) {
                 alert('Please enter phone number and select bundle.');
                 return;
