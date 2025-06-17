@@ -6,24 +6,31 @@
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
       color: white;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
     .logo {
-      margin-top: 30px;
+      margin-top: 50px;
     }
     .logo img {
-      width: 150px;
+      width: 180px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
     .welcome {
-      font-size: 24px;
-      margin: 20px 0;
-      animation: colorchange 5s infinite;
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+      animation: colorShift 4s infinite;
     }
-    @keyframes colorchange {
+    @keyframes colorShift {
       0% { color: #ffeb3b; }
       25% { color: #4caf50; }
       50% { color: #f44336; }
@@ -31,25 +38,31 @@
       100% { color: #ffeb3b; }
     }
     .container {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
       border-radius: 15px;
-      display: inline-block;
-      margin-top: 20px;
+      margin-top: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     input, select, button {
-      padding: 10px;
-      margin: 10px 0;
-      width: 80%;
-      font-size: 16px;
-      border-radius: 10px;
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
       border: none;
+      border-radius: 10px;
+      font-size: 16px;
     }
     button {
       background: #ffeb3b;
       color: #000;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #fdd835;
     }
   </style>
 </head>
@@ -59,54 +72,51 @@
     <img src="https://i.ibb.co/2n8GThX/quicktel-logo.png" alt="Quicktel Logo">
   </div>
 
-  <div class="welcome">Welcome to Quicktel Bundles - Fast, Secure & Reliable!</div>
+  <div class="welcome">Welcome to Quicktel Bundles!</div>
 
   <div class="container">
-    <input type="tel" id="phone" placeholder="Enter your phone number" required><br>
+    <input type="tel" id="phone" placeholder="Enter your phone number (254...)" required>
 
     <select id="bundle">
-      <option value="daily">Daily Bundle - KSh 20</option>
-      <option value="weekly">Weekly Bundle - KSh 100</option>
-      <option value="monthly">Monthly Bundle - KSh 300</option>
-    </select><br>
+      <option value="Daily Bundle - KSh 20">Daily Bundle - KSh 20</option>
+      <option value="Weekly Bundle - KSh 100">Weekly Bundle - KSh 100</option>
+      <option value="Monthly Bundle - KSh 300">Monthly Bundle - KSh 300</option>
+    </select>
 
     <button onclick="payWithPaystack()">Pay Now</button>
   </div>
 
   <script>
     function payWithPaystack() {
-      const phone = document.getElementById("phone").value;
+      const phone = document.getElementById("phone").value.trim();
       const bundle = document.getElementById("bundle").value;
 
       if (!phone) {
-        alert("Please enter your phone number");
+        alert("Please enter your phone number.");
         return;
       }
 
       let amount = 0;
-      if (bundle === 'daily') amount = 20 * 100;
-      if (bundle === 'weekly') amount = 100 * 100;
-      if (bundle === 'monthly') amount = 300 * 100;
+      if (bundle.includes('20')) amount = 20 * 100;
+      if (bundle.includes('100')) amount = 100 * 100;
+      if (bundle.includes('300')) amount = 300 * 100;
 
       let handler = PaystackPop.setup({
-        key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036', // Your Paystack public key
-        email: phone + "@quicktel.com",  // Just to create a unique email per phone
+        key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
+        email: `${phone}@quicktel.com`,
         amount: amount,
         currency: 'KES',
         metadata: {
-          custom_fields: [
-            { display_name: "Phone Number", variable_name: "phone", value: phone }
-          ]
+          custom_fields: [{ display_name: "Phone Number", value: phone }]
         },
         callback: function(response) {
-          // After successful payment, call your backend to verify
           fetch('http://localhost:5000/verify-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               reference: response.reference,
               bundle: bundle,
-              email: phone + "@quicktel.com"
+              phone: phone
             })
           })
           .then(res => res.json())
@@ -114,7 +124,7 @@
           .catch(err => alert('Payment verification failed'));
         },
         onClose: function() {
-          alert('Payment process cancelled');
+          alert('Payment cancelled.');
         }
       });
       handler.openIframe();
