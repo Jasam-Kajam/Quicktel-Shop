@@ -1,56 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quicktel Bundles - Paystack</title>
-</head>
-<body style="font-family:sans-serif;">
-  <h1>Quicktel Bundles</h1>
-  <label>Select your bundle:</label><br/>
-  <select id="bundleSelect">
-    <option value="daily">Daily Bundle - KSh 20</option>
-    <option value="weekly">Weekly Bundle - KSh 100</option>
-    <option value="monthly">Monthly Bundle - KSh 300</option>
-  </select>
-  <br/><br/>
-  <input type="email" id="email" placeholder="Enter your email" required/>
-  <br/><br/>
-  <button onclick="payWithPaystack()">Pay Now</button>
-
+  <meta charset="UTF-8">
+  <title>Quicktel Bundles</title>
   <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 20px;
+    }
+    .logo {
+      margin-top: 30px;
+    }
+    .logo img {
+      width: 150px;
+    }
+    .welcome {
+      font-size: 24px;
+      margin: 20px 0;
+      animation: colorchange 5s infinite;
+    }
+    @keyframes colorchange {
+      0% { color: #ffeb3b; }
+      25% { color: #4caf50; }
+      50% { color: #f44336; }
+      75% { color: #2196f3; }
+      100% { color: #ffeb3b; }
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+    }
+    button {
+      background: #ffeb3b;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <img src="https://i.ibb.co/2n8GThX/quicktel-logo.png" alt="Quicktel Logo">
+  </div>
+
+  <div class="welcome">Welcome to Quicktel Bundles - Fast, Secure & Reliable!</div>
+
+  <div class="container">
+    <input type="tel" id="phone" placeholder="Enter your phone number" required><br>
+
+    <select id="bundle">
+      <option value="daily">Daily Bundle - KSh 20</option>
+      <option value="weekly">Weekly Bundle - KSh 100</option>
+      <option value="monthly">Monthly Bundle - KSh 300</option>
+    </select><br>
+
+    <button onclick="payWithPaystack()">Pay Now</button>
+  </div>
+
   <script>
     function payWithPaystack() {
-      const email = document.getElementById('email').value;
-      const bundle = document.getElementById('bundleSelect').value;
-      let amount = 0;
+      const phone = document.getElementById("phone").value;
+      const bundle = document.getElementById("bundle").value;
 
+      if (!phone) {
+        alert("Please enter your phone number");
+        return;
+      }
+
+      let amount = 0;
       if (bundle === 'daily') amount = 20 * 100;
       if (bundle === 'weekly') amount = 100 * 100;
       if (bundle === 'monthly') amount = 300 * 100;
 
       let handler = PaystackPop.setup({
-        key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036', // Your Paystack Public Key
-        email: email,
+        key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036', // Your Paystack public key
+        email: phone + "@quicktel.com",  // Just to create a unique email per phone
         amount: amount,
         currency: 'KES',
-        callback: function(response){
-          // Send reference to backend for verification
+        metadata: {
+          custom_fields: [
+            { display_name: "Phone Number", variable_name: "phone", value: phone }
+          ]
+        },
+        callback: function(response) {
+          // After successful payment, call your backend to verify
           fetch('http://localhost:5000/verify-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ reference: response.reference, bundle: bundle, email: email })
+            body: JSON.stringify({
+              reference: response.reference,
+              bundle: bundle,
+              email: phone + "@quicktel.com"
+            })
           })
           .then(res => res.json())
           .then(data => alert(data.message))
-          .catch(err => alert('Verification failed'));
+          .catch(err => alert('Payment verification failed'));
         },
-        onClose: function(){
-          alert('Payment cancelled');
+        onClose: function() {
+          alert('Payment process cancelled');
         }
       });
       handler.openIframe();
     }
   </script>
+
 </body>
 </html>
