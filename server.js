@@ -1,22 +1,19 @@
-// 1️⃣ Import necessary libraries
+// server.js
+
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
-// 2️⃣ Create express app
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 3️⃣ Your Paystack secret key (VERY IMPORTANT)
+// Replace with your real Paystack secret key
 const PAYSTACK_SECRET_KEY = 'sk_live_ca1bb04025c10ec7474204949ce6d4811d1fb99f';
 
-// 4️⃣ Create API endpoint to verify payment
 app.post('/verify-payment', async (req, res) => {
-    // Receive these fields from frontend
-    const { reference, bundle, email } = req.body;
+    const { reference, bundle, phone } = req.body;
 
-    // Call Paystack API to verify payment
     try {
         const paystackResponse = await axios.get(
             `https://api.paystack.co/transaction/verify/${reference}`,
@@ -27,35 +24,29 @@ app.post('/verify-payment', async (req, res) => {
             }
         );
 
-        const verificationData = paystackResponse.data;
+        const data = paystackResponse.data;
 
-        // Check if Paystack says payment was successful
-        if (verificationData.data.status === 'success') {
-            console.log('✅ Payment verified!');
-            console.log('Email:', email);
-            console.log('Bundle purchased:', bundle);
-            console.log('Amount paid:', verificationData.data.amount / 100);
+        if (data.data.status === 'success') {
+            console.log('✅ Payment verified');
+            console.log('Phone:', phone);
+            console.log('Bundle:', bundle);
+            console.log('Amount:', data.data.amount / 100);
+            console.log(`Activating bundle for ${phone}...`);
 
-            // Simulate activation (you will automate this later)
-            console.log('Activating bundle...');
-
-            // Send success response to frontend
             res.json({
                 success: true,
-                message: `Payment verified! Bundle '${bundle}' has been activated.`
+                message: `Payment successful! Bundle '${bundle}' activated for ${phone}.`
             });
         } else {
-            console.log('❌ Payment not successful');
             res.status(400).json({ success: false, message: 'Payment verification failed.' });
         }
     } catch (err) {
-        console.error('⚠ Error verifying payment:', err.message);
+        console.error('Error verifying payment:', err.message);
         res.status(500).json({ success: false, message: 'Server error verifying payment.' });
     }
 });
 
-// 5️⃣ Start server on port 5000
 const PORT = 5000;
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running at http://localhost:${PORT}`);
+    console.log(`🚀 Backend server running on http://localhost:${PORT}`);
 });
