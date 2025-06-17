@@ -35,13 +35,28 @@
             border-radius: 15px;
             padding: 20px;
         }
-        input, button, select {
+        input, button {
             padding: 10px;
             margin: 10px;
             border-radius: 10px;
             border: none;
             width: 80%;
             font-size: 1rem;
+        }
+        .category {
+            margin-top: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .category-title {
+            font-size: 1.3rem;
+            color: yellow;
+        }
+        .bundle-list {
+            display: none;
+            margin-top: 10px;
         }
         .bundle-option {
             background: #fff;
@@ -62,11 +77,6 @@
             background: #f107a3;
             color: #fff;
         }
-        .category-title {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: yellow;
-        }
     </style>
 </head>
 <body>
@@ -76,21 +86,33 @@
         <h2>Welcome to Quicktel Bundles</h2>
         <input type="text" id="phone" placeholder="Enter your phone number" required>
 
-        <!-- DAILY BUNDLES -->
-        <div class="category-title">📆 Daily Bundles</div>
-        <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
-        <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
-        <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
+        <!-- DAILY -->
+        <div class="category">
+            <div class="category-title">📆 Daily Bundles</div>
+            <div class="bundle-list">
+                <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
+                <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
+                <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
+            </div>
+        </div>
 
-        <!-- WEEKLY BUNDLES -->
-        <div class="category-title">📅 Weekly Bundles</div>
-        <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
-        <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
+        <!-- WEEKLY -->
+        <div class="category">
+            <div class="category-title">📅 Weekly Bundles</div>
+            <div class="bundle-list">
+                <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
+                <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
+            </div>
+        </div>
 
-        <!-- MONTHLY BUNDLES -->
-        <div class="category-title">🗓️ Monthly Bundles</div>
-        <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
-        <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
+        <!-- MONTHLY -->
+        <div class="category">
+            <div class="category-title">🗓️ Monthly Bundles</div>
+            <div class="bundle-list">
+                <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
+                <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
+            </div>
+        </div>
 
         <button id="payButton">Proceed to Pay</button>
         <p id="status"></p>
@@ -100,6 +122,7 @@
     <script>
         let selectedBundle = null;
 
+        // Handle bundle selection
         document.querySelectorAll('.bundle-option').forEach(option => {
             option.addEventListener('click', () => {
                 document.querySelectorAll('.bundle-option').forEach(o => o.classList.remove('selected'));
@@ -108,6 +131,14 @@
                     label: option.getAttribute('data-label'),
                     price: option.getAttribute('data-price')
                 };
+            });
+        });
+
+        // Handle category dropdown toggle
+        document.querySelectorAll('.category-title').forEach(title => {
+            title.addEventListener('click', () => {
+                document.querySelectorAll('.bundle-list').forEach(list => list.style.display = 'none');
+                title.nextElementSibling.style.display = 'block';
             });
         });
 
