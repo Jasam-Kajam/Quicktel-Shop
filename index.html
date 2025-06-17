@@ -1,199 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Quicktel Bundles</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://js.paystack.co/v1/inline.js"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(45deg, #6a11cb, #2575fc, #f80759, #ff6a00);
-      background-size: 400% 400%;
-      animation: gradientShift 10s ease infinite;
-      color: white;
-      overflow-x: hidden;
-    }
-    @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-    .logo {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-top: 1rem;
-      text-align: center;
-      text-shadow: 3px 3px #00000080;
-      animation: colorShift 5s infinite;
-    }
-    @keyframes colorShift {
-      0% { color: #ffeb3b; }
-      25% { color: #4caf50; }
-      50% { color: #f44336; }
-      75% { color: #2196f3; }
-      100% { color: #ffeb3b; }
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 15px;
-      margin: 1rem auto;
-      width: 95%;
-      max-width: 450px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    input, select, button {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.8rem 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-    button {
-      background: #ffeb3b;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #fdd835;
-    }
-    .category-title {
-      font-weight: bold;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #ffe600;
-      text-shadow: 1px 1px #000;
-    }
-    select {
-      background: white;
-      color: #333;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quicktel Bundles</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 30px;
+            animation: colorChange 5s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #fff; }
+            50% { color: #FFD700; }
+            100% { color: #00FF00; }
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        input, button, select {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            width: 80%;
+            font-size: 1rem;
+        }
+        .bundle-option {
+            background: #fff;
+            color: #333;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .bundle-option:hover {
+            background: #f107a3;
+            color: #fff;
+        }
+        .category-title {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: yellow;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="logo">QUICKTEL</div>
+    <div class="logo">QUICKTEL</div>
+    <div class="container">
+        <h2>Welcome to Quicktel Bundles</h2>
+        <input type="text" id="phone" placeholder="Enter your phone number" required>
 
-  <div class="container">
-    <input type="tel" id="phone" placeholder="Enter your phone number (254...)" required>
+        <!-- DAILY BUNDLES -->
+        <div class="category-title">📆 Daily Bundles</div>
+        <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
+        <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
+        <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
 
-    <div id="bundles">
+        <!-- WEEKLY BUNDLES -->
+        <div class="category-title">📅 Weekly Bundles</div>
+        <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
+        <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
 
-      <div class="category-title">📆 Daily Bundles</div>
-      <select id="bundle-daily">
-        <option data-price="5" value="20 SMS">20 SMS - KSh 5</option>
-        <option data-price="10" value="200 SMS">200 SMS - KSh 10</option>
-        <option data-price="20" value="Unlimited SMS">Unlimited SMS - KSh 20</option>
-        <option data-price="50" value="100MB (7 days)">100MB - KSh 50</option>
-        <option data-price="100" value="200MB (7 days)">200MB - KSh 100</option>
-        <option data-price="250" value="500MB (7 days)">500MB - KSh 250</option>
-        <option data-price="500" value="1000MB (7 days)">1000MB - KSh 500</option>
-        <option data-price="10" value="100 mins Voice">100 mins Voice - KSh 10</option>
-      </select>
+        <!-- MONTHLY BUNDLES -->
+        <div class="category-title">🗓️ Monthly Bundles</div>
+        <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
+        <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
 
-      <div class="category-title">📅 Weekly Bundles</div>
-      <select id="bundle-weekly">
-        <option data-price="20" value="100 SMS">100 SMS - KSh 20</option>
-        <option data-price="30" value="1000 SMS">1000 SMS - KSh 30</option>
-        <option data-price="50" value="Unlimited SMS">Unlimited SMS - KSh 50</option>
-        <option data-price="100" value="500MB + WhatsApp">500MB - KSh 100</option>
-        <option data-price="250" value="1.5GB + WhatsApp">1.5GB - KSh 250</option>
-        <option data-price="500" value="3.5GB + WhatsApp">3.5GB - KSh 500</option>
-        <option data-price="150" value="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</option>
-      </select>
-
-      <div class="category-title">🗓️ Monthly Bundles</div>
-      <select id="bundle-monthly">
-        <option data-price="100" value="1500 SMS">1500 SMS - KSh 100</option>
-        <option data-price="200" value="3500 SMS">3500 SMS - KSh 200</option>
-        <option data-price="100" value="400MB">400MB - KSh 100</option>
-        <option data-price="250" value="1GB">1GB - KSh 250</option>
-        <option data-price="500" value="2GB">2GB - KSh 500</option>
-        <option data-price="1000" value="8GB">8GB - KSh 1,000</option>
-        <option data-price="2000" value="17GB">17GB - KSh 2,000</option>
-        <option data-price="3000" value="27GB">27GB - KSh 3,000</option>
-        <option data-price="5000" value="47GB">47GB - KSh 5,000</option>
-        <option data-price="10000" value="100GB">100GB - KSh 10,000</option>
-      </select>
-
-      <div class="category-title">🔥 BLAZE Monthly Bundles</div>
-      <select id="bundle-blaze">
-        <option data-price="150" value="1.25GB (30 Days)">1.25GB - KSh 150</option>
-        <option data-price="300" value="3GB (30 Days)">3GB - KSh 300</option>
-        <option data-price="750" value="7.5GB (30 Days)">7.5GB - KSh 750</option>
-        <option data-price="2000" value="25GB (30 Days)">25GB - KSh 2,000</option>
-      </select>
-
-      <div class="category-title">📦 All in One Bundles</div>
-      <select id="bundle-allinone">
-        <option data-price="1000" value="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</option>
-        <option data-price="2000" value="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</option>
-        <option data-price="3000" value="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</option>
-        <option data-price="5000" value="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</option>
-        <option data-price="10000" value="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</option>
-      </select>
-
+        <button id="payButton">Proceed to Pay</button>
+        <p id="status"></p>
     </div>
 
-    <button onclick="payWithPaystack()">Pay Now</button>
-  </div>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        let selectedBundle = null;
 
-  <script>
-    function payWithPaystack() {
-      const phone = document.getElementById("phone").value.trim();
+        document.querySelectorAll('.bundle-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.bundle-option').forEach(o => o.style.border = 'none');
+                option.style.border = '2px solid yellow';
+                selectedBundle = {
+                    label: option.getAttribute('data-label'),
+                    price: option.getAttribute('data-price')
+                };
+            });
+        });
 
-      let bundle = null;
-      let price = null;
+        document.getElementById('payButton').addEventListener('click', () => {
+            const phone = document.getElementById('phone').value;
+            if (!phone || !selectedBundle) {
+                alert('Please enter phone number and select bundle.');
+                return;
+            }
 
-      document.querySelectorAll('#bundles select').forEach(select => {
-        const selectedOption = select.options[select.selectedIndex];
-        if (selectedOption && selectedOption.value !== "") {
-          bundle = selectedOption.value;
-          price = selectedOption.getAttribute("data-price");
-        }
-      });
-
-      if (!phone || !bundle || !price) {
-        alert("Please enter your phone number and select a bundle.");
-        return;
-      }
-
-      let handler = PaystackPop.setup({
-        key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
-        email: `${phone}@quicktel.com`,
-        amount: price * 100,
-        currency: 'KES',
-        metadata: { custom_fields: [{ display_name: "Phone Number", value: phone }] },
-        callback: function(response) {
-          fetch('http://localhost:5000/verify-payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              reference: response.reference,
-              bundle: bundle,
-              phone: phone
-            })
-          })
-          .then(res => res.json())
-          .then(data => alert(data.message))
-          .catch(err => alert('Payment verification failed'));
-        },
-        onClose: function() { alert('Payment cancelled.'); }
-      });
-      handler.openIframe();
-    }
-  </script>
+            let handler = PaystackPop.setup({
+                key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
+                email: 'customer@example.com',
+                amount: selectedBundle.price * 100,
+                currency: 'KES',
+                callback: function(response) {
+                    document.getElementById('status').innerText = "Verifying payment...";
+                    fetch('http://localhost:5000/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            reference: response.reference,
+                            bundle: selectedBundle.label,
+                            phone: phone
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('status').innerText = data.message;
+                    });
+                },
+                onClose: function() {
+                    alert('Transaction cancelled');
+                }
+            });
+            handler.openIframe();
+        });
+    </script>
 
 </body>
 </html>
