@@ -93,6 +93,11 @@
                 <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
                 <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
                 <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
+                <div class="bundle-option" data-price="50" data-label="100MB (7 days)">100MB - KSh 50</div>
+                <div class="bundle-option" data-price="100" data-label="200MB (7 days)">200MB - KSh 100</div>
+                <div class="bundle-option" data-price="250" data-label="500MB (7 days)">500MB - KSh 250</div>
+                <div class="bundle-option" data-price="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
+                <div class="bundle-option" data-price="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
             </div>
         </div>
 
@@ -102,6 +107,11 @@
             <div class="bundle-list">
                 <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
                 <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
+                <div class="bundle-option" data-price="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
+                <div class="bundle-option" data-price="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
+                <div class="bundle-option" data-price="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
+                <div class="bundle-option" data-price="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
+                <div class="bundle-option" data-price="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
             </div>
         </div>
 
@@ -111,6 +121,37 @@
             <div class="bundle-list">
                 <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
                 <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
+                <div class="bundle-option" data-price="100" data-label="400MB">400MB - KSh 100</div>
+                <div class="bundle-option" data-price="250" data-label="1GB">1GB - KSh 250</div>
+                <div class="bundle-option" data-price="500" data-label="2GB">2GB - KSh 500</div>
+                <div class="bundle-option" data-price="1000" data-label="8GB">8GB - KSh 1,000</div>
+                <div class="bundle-option" data-price="2000" data-label="17GB">17GB - KSh 2,000</div>
+                <div class="bundle-option" data-price="3000" data-label="27GB">27GB - KSh 3,000</div>
+                <div class="bundle-option" data-price="5000" data-label="47GB">47GB - KSh 5,000</div>
+                <div class="bundle-option" data-price="10000" data-label="100GB">100GB - KSh 10,000</div>
+            </div>
+        </div>
+
+        <!-- BLAZE Monthly -->
+        <div class="category">
+            <div class="category-title">🔥 BLAZE Monthly Bundles</div>
+            <div class="bundle-list">
+                <div class="bundle-option" data-price="150" data-label="1.25GB (30 Days)">1.25GB - KSh 150</div>
+                <div class="bundle-option" data-price="300" data-label="3GB (30 Days)">3GB - KSh 300</div>
+                <div class="bundle-option" data-price="750" data-label="7.5GB (30 Days)">7.5GB - KSh 750</div>
+                <div class="bundle-option" data-price="2000" data-label="25GB (30 Days)">25GB - KSh 2,000</div>
+            </div>
+        </div>
+
+        <!-- All in One -->
+        <div class="category">
+            <div class="category-title">📦 All in One Bundles</div>
+            <div class="bundle-list">
+                <div class="bundle-option" data-price="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
+                <div class="bundle-option" data-price="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
+                <div class="bundle-option" data-price="3000" data-label="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</div>
+                <div class="bundle-option" data-price="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</div>
+                <div class="bundle-option" data-price="10000" data-label="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</div>
             </div>
         </div>
 
@@ -122,7 +163,7 @@
     <script>
         let selectedBundle = null;
 
-        // Handle bundle selection
+        // Bundle selection logic
         document.querySelectorAll('.bundle-option').forEach(option => {
             option.addEventListener('click', () => {
                 document.querySelectorAll('.bundle-option').forEach(o => o.classList.remove('selected'));
@@ -134,11 +175,11 @@
             });
         });
 
-        // Handle category dropdown toggle
+        // Dropdown toggle
         document.querySelectorAll('.category-title').forEach(title => {
             title.addEventListener('click', () => {
-                document.querySelectorAll('.bundle-list').forEach(list => list.style.display = 'none');
-                title.nextElementSibling.style.display = 'block';
+                const list = title.nextElementSibling;
+                list.style.display = list.style.display === 'block' ? 'none' : 'block';
             });
         });
 
