@@ -5,92 +5,73 @@
     <title>Quicktel Bundles</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to bottom right, #1B5E20, #4CAF50);
-            color: #fff;
             margin: 0;
-            padding: 0;
-        }
-        .header {
-            background: #fff;
-            color: #1B5E20;
-            padding: 20px 10px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #2b5876, #4e4376);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            letter-spacing: 1px;
+            color: #ffe082;
         }
         .bundle-section {
-            background: rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .bundle-section h3 {
-            margin-top: 0;
-            font-weight: 600;
-            font-size: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            color: #ffcc80;
         }
         select {
             padding: 12px;
             font-size: 16px;
-            width: 100%;
             border: none;
-            border-radius: 10px;
-            margin-top: 10px;
-            background: #fff;
-            color: #333;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+            appearance: none;
+        }
+        select option {
+            color: #000;
         }
         button {
-            margin-top: 30px;
-            width: 100%;
             padding: 15px;
             font-size: 18px;
-            background: linear-gradient(to right, #FF5722, #FF9800);
+            width: 100%;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ff9800, #ff5722);
             color: #fff;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: 0.3s;
+            margin-top: 20px;
         }
         button:hover {
+            background: linear-gradient(to right, #ff5722, #e65100);
             transform: scale(1.05);
-        }
-        .footer {
-            text-align: center;
-            font-size: 14px;
-            margin-top: 30px;
-            color: #ddd;
-        }
-        .till-number {
-            font-weight: bold;
-            font-size: 16px;
-            background: rgba(255,255,255,0.15);
-            padding: 10px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">QUICKTEL BUNDLES</div>
-
     <div class="container">
-
-        <div class="till-number">
-            Pay via M-PESA Till Number: <span style="color: #FFD700;">8644442</span><br>
-            Payment is instant and fully automated.
-        </div>
+        <h1>QUICKTEL BUNDLES</h1>
 
         <div class="bundle-section">
             <h3>📆 Daily Bundles</h3>
@@ -163,13 +144,10 @@
 
         <button onclick="proceedToPay()">Buy Bundle</button>
 
-        <div class="footer">
-            &copy; 2025 Quicktel Bundles | Powered by Quicktel Technologies
-        </div>
     </div>
 
     <script>
-        function proceedToPay() {
+        async function proceedToPay() {
             const dropdowns = ['dailyBundles', 'weeklyBundles', 'monthlyBundles', 'blazeBundles', 'allinoneBundles'];
             let selectedValue = '';
             let selectedLabel = '';
@@ -189,8 +167,30 @@
                 return;
             }
 
-            alert(`You selected: ${selectedLabel} - KSh ${selectedValue}`);
-            // Here you can call your backend payment API
+            if (!confirm(`Confirm purchase: ${selectedLabel} for KSh ${selectedValue}?`)) {
+                return;
+            }
+
+            // Keep your exact backend call
+            try {
+                const response = await fetch('https://quicktel-shop.onrender.com/api/pay', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: selectedValue,
+                        description: selectedLabel
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert("Payment request sent successfully.");
+                } else {
+                    alert("Payment failed. Please try again.");
+                }
+            } catch (error) {
+                alert("Error connecting to server: " + error.message);
+            }
         }
     </script>
 
