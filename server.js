@@ -9,7 +9,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Updated Paystack Secret Key
+// Paystack Secret Key
 const PAYSTACK_SECRET_KEY = 'sk_live_46bd28ec294704ab8eb8fa0b5fe80558eb5b5ffc';
 
 // Africa's Talking credentials
@@ -40,7 +40,7 @@ app.post('/verify-payment', async (req, res) => {
             // Send SMS confirmation
             const sms = africasTalking.SMS;
             await sms.send({
-                to: `+254${phone.substring(1)}`,
+                to: `+254${phone.substring(1)}`, 
                 message: `Hello ${phone}, your Quicktel ${bundle} bundle has been activated. Enjoy!`
             });
 
