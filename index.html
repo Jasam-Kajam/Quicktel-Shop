@@ -5,106 +5,168 @@
     <title>Quicktel Bundles</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #4caf50, #81c784);
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #1B5E20, #4CAF50);
             color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: #fff;
+            color: #1B5E20;
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .container {
             padding: 20px;
         }
-        h1 {
-            text-align: center;
-        }
         .bundle-section {
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-        select, button {
-            padding: 10px;
-            margin-top: 10px;
+        .bundle-section h3 {
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        select {
+            padding: 12px;
             font-size: 16px;
             width: 100%;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-top: 10px;
+            background: #fff;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         button {
-            background-color: #ff9800;
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background: linear-gradient(to right, #FF5722, #FF9800);
+            border: none;
+            border-radius: 50px;
             color: #fff;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             cursor: pointer;
+            transition: 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            color: #ddd;
+        }
+        .till-number {
+            font-weight: bold;
+            font-size: 16px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <h1>QUICKTEL BUNDLES</h1>
+    <div class="header">QUICKTEL BUNDLES</div>
 
-    <div class="bundle-section">
-        <h3>📆 Daily Bundles</h3>
-        <select id="dailyBundles">
-            <option value="">-- Select Daily Bundle --</option>
-            <option value="5|20 SMS">20 SMS - KSh 5</option>
-            <option value="10|200 SMS">200 SMS - KSh 10</option>
-            <option value="20|Unlimited SMS">Unlimited SMS - KSh 20</option>
-            <option value="50|100MB (7 days)">100MB (7 days) - KSh 50</option>
-            <option value="100|200MB (7 days)">200MB (7 days) - KSh 100</option>
-            <option value="250|500MB (7 days)">500MB (7 days) - KSh 250</option>
-            <option value="500|1000MB (7 days)">1000MB (7 days) - KSh 500</option>
-            <option value="10|100 mins Voice">100 mins Voice - KSh 10</option>
-        </select>
+    <div class="container">
+
+        <div class="till-number">
+            Pay via M-PESA Till Number: <span style="color: #FFD700;">8644442</span><br>
+            Payment is instant and fully automated.
+        </div>
+
+        <div class="bundle-section">
+            <h3>📆 Daily Bundles</h3>
+            <select id="dailyBundles">
+                <option value="">-- Select Daily Bundle --</option>
+                <option value="5|20 SMS">20 SMS - KSh 5</option>
+                <option value="10|200 SMS">200 SMS - KSh 10</option>
+                <option value="20|Unlimited SMS">Unlimited SMS - KSh 20</option>
+                <option value="50|100MB (7 days)">100MB (7 days) - KSh 50</option>
+                <option value="100|200MB (7 days)">200MB (7 days) - KSh 100</option>
+                <option value="250|500MB (7 days)">500MB (7 days) - KSh 250</option>
+                <option value="500|1000MB (7 days)">1000MB (7 days) - KSh 500</option>
+                <option value="10|100 mins Voice">100 mins Voice - KSh 10</option>
+            </select>
+        </div>
+
+        <div class="bundle-section">
+            <h3>📅 Weekly Bundles</h3>
+            <select id="weeklyBundles">
+                <option value="">-- Select Weekly Bundle --</option>
+                <option value="20|100 SMS">100 SMS - KSh 20</option>
+                <option value="30|1000 SMS">1000 SMS - KSh 30</option>
+                <option value="50|Unlimited SMS">Unlimited SMS - KSh 50</option>
+                <option value="100|500MB + WhatsApp">500MB + WhatsApp - KSh 100</option>
+                <option value="250|1.5GB + WhatsApp">1.5GB + WhatsApp - KSh 250</option>
+                <option value="500|3.5GB + WhatsApp">3.5GB + WhatsApp - KSh 500</option>
+                <option value="150|BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</option>
+            </select>
+        </div>
+
+        <div class="bundle-section">
+            <h3>🗓️ Monthly Bundles</h3>
+            <select id="monthlyBundles">
+                <option value="">-- Select Monthly Bundle --</option>
+                <option value="100|1500 SMS">1500 SMS - KSh 100</option>
+                <option value="200|3500 SMS">3500 SMS - KSh 200</option>
+                <option value="100|400MB">400MB - KSh 100</option>
+                <option value="250|1GB">1GB - KSh 250</option>
+                <option value="500|2GB">2GB - KSh 500</option>
+                <option value="1000|8GB">8GB - KSh 1,000</option>
+                <option value="2000|17GB">17GB - KSh 2,000</option>
+                <option value="3000|27GB">27GB - KSh 3,000</option>
+                <option value="5000|47GB">47GB - KSh 5,000</option>
+                <option value="10000|100GB">100GB - KSh 10,000</option>
+            </select>
+        </div>
+
+        <div class="bundle-section">
+            <h3>🔥 BLAZE Monthly Bundles</h3>
+            <select id="blazeBundles">
+                <option value="">-- Select Blaze Bundle --</option>
+                <option value="150|1.25GB (30 Days)">1.25GB - KSh 150</option>
+                <option value="300|3GB (30 Days)">3GB - KSh 300</option>
+                <option value="750|7.5GB (30 Days)">7.5GB - KSh 750</option>
+                <option value="2000|25GB (30 Days)">25GB - KSh 2,000</option>
+            </select>
+        </div>
+
+        <div class="bundle-section">
+            <h3>📦 All in One Bundles</h3>
+            <select id="allinoneBundles">
+                <option value="">-- Select All-in-One Bundle --</option>
+                <option value="1000|8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</option>
+                <option value="2000|17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</option>
+                <option value="3000|27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</option>
+                <option value="5000|47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</option>
+                <option value="10000|100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</option>
+            </select>
+        </div>
+
+        <button onclick="proceedToPay()">Buy Bundle</button>
+
+        <div class="footer">
+            &copy; 2025 Quicktel Bundles | Powered by Quicktel Technologies
+        </div>
     </div>
-
-    <div class="bundle-section">
-        <h3>📅 Weekly Bundles</h3>
-        <select id="weeklyBundles">
-            <option value="">-- Select Weekly Bundle --</option>
-            <option value="20|100 SMS">100 SMS - KSh 20</option>
-            <option value="30|1000 SMS">1000 SMS - KSh 30</option>
-            <option value="50|Unlimited SMS">Unlimited SMS - KSh 50</option>
-            <option value="100|500MB + WhatsApp">500MB + WhatsApp - KSh 100</option>
-            <option value="250|1.5GB + WhatsApp">1.5GB + WhatsApp - KSh 250</option>
-            <option value="500|3.5GB + WhatsApp">3.5GB + WhatsApp - KSh 500</option>
-            <option value="150|BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</option>
-        </select>
-    </div>
-
-    <div class="bundle-section">
-        <h3>🗓️ Monthly Bundles</h3>
-        <select id="monthlyBundles">
-            <option value="">-- Select Monthly Bundle --</option>
-            <option value="100|1500 SMS">1500 SMS - KSh 100</option>
-            <option value="200|3500 SMS">3500 SMS - KSh 200</option>
-            <option value="100|400MB">400MB - KSh 100</option>
-            <option value="250|1GB">1GB - KSh 250</option>
-            <option value="500|2GB">2GB - KSh 500</option>
-            <option value="1000|8GB">8GB - KSh 1,000</option>
-            <option value="2000|17GB">17GB - KSh 2,000</option>
-            <option value="3000|27GB">27GB - KSh 3,000</option>
-            <option value="5000|47GB">47GB - KSh 5,000</option>
-            <option value="10000|100GB">100GB - KSh 10,000</option>
-        </select>
-    </div>
-
-    <div class="bundle-section">
-        <h3>🔥 BLAZE Monthly Bundles</h3>
-        <select id="blazeBundles">
-            <option value="">-- Select Blaze Bundle --</option>
-            <option value="150|1.25GB (30 Days)">1.25GB - KSh 150</option>
-            <option value="300|3GB (30 Days)">3GB - KSh 300</option>
-            <option value="750|7.5GB (30 Days)">7.5GB - KSh 750</option>
-            <option value="2000|25GB (30 Days)">25GB - KSh 2,000</option>
-        </select>
-    </div>
-
-    <div class="bundle-section">
-        <h3>📦 All in One Bundles</h3>
-        <select id="allinoneBundles">
-            <option value="">-- Select All-in-One Bundle --</option>
-            <option value="1000|8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</option>
-            <option value="2000|17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</option>
-            <option value="3000|27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</option>
-            <option value="5000|47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</option>
-            <option value="10000|100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</option>
-        </select>
-    </div>
-
-    <button onclick="proceedToPay()">Buy Bundle</button>
 
     <script>
         function proceedToPay() {
