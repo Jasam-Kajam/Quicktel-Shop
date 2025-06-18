@@ -1,60 +1,57 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const axios = require('axios');
-const chalk = require('chalk');
+const africastalking = require('africastalking');
 
 const app = express();
 const PORT = 5000;
 
-// Load environment variables for security (best practice)
-require('dotenv').config();
-const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || 'sk_live_ca1bb04025c10ec7474204949ce6d4811d1fb99f';
-
-// Middlewares
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// Health check route
-app.get('/', (req, res) => {
-    res.send('🚀 Quicktel Backend API is running...');
+// Paystack Secret Key
+const PAYSTACK_SECRET_KEY = 'sk_live_ca1bb04025c10ec7474204949ce6d4811d1fb99f';
+
+// Africa's Talking credentials
+const africasTalking = africastalking({
+    apiKey: 'atsk_fd734fe5664d26d6ceab49795e7f707343c597e9a60702a07b08f6032273531346d02e33',
+    username: 'sandbox',
 });
 
-// Payment verification route
 app.post('/verify-payment', async (req, res) => {
     const { reference, bundle, phone } = req.body;
 
-    console.log(chalk.blue(`🔍 Verifying payment for ${chalk.yellow(phone)} for bundle: ${chalk.green(bundle)}`));
-
     try {
-        const response = await axios.get(`https://api.paystack.co/transaction/verify/${reference}`, {
-            headers: { Authorization: `Bearer ${PAYSTACK_SECRET_KEY}` }
+        const response = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+            headers: {
+                Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                'Content-Type': 'application/json'
+            }
         });
 
-        const data = response.data.data;
+        const data = await response.json();
 
-        if (data.status === "success") {
-            console.log(chalk.green(`✅ Payment successful! Reference: ${reference}`));
-            console.log(chalk.magenta(`📦 Bundle activated: ${bundle} for ${phone}`));
+        if (data.status && data.data.status === 'success') {
+            console.log(`✅ Payment verified for ${phone}: ${bundle}`);
 
-            // Here you can trigger your actual bundle activation logic (e.g. Safaricom API, SMS delivery, etc)
+            // Simulate bundle activation
+            console.log(`📶 Activating bundle: ${bundle} for ${phone}`);
 
-            res.json({
-                status: "success",
-                message: `Payment successful for ${bundle} on ${phone}. Bundle activated!`,
-                amount: data.amount / 100
+            // Send SMS confirmation
+            const sms = africasTalking.SMS;
+            await sms.send({
+                to: `+254${phone.substring(1)}`, 
+                message: `Hello ${phone}, your Quicktel ${bundle} bundle has been activated. Enjoy!`
             });
+
+            res.json({ message: '✅ Payment successful and bundle activated!' });
         } else {
-            console.log(chalk.red(`❌ Payment verification failed for reference: ${reference}`));
-            res.status(400).json({ status: "failed", message: "Payment verification failed." });
+            res.status(400).json({ message: '❌ Payment verification failed.' });
         }
-    } catch (err) {
-        console.error(chalk.red('🔥 Server Error:'), err.message);
-        res.status(500).json({ status: "error", message: "Internal server error during verification." });
+    } catch (error) {
+        console.error('❌ Error verifying payment:', error);
+        res.status(500).json({ message: 'Server error.' });
     }
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(chalk.bgGreen.black(`🚀 QUICKTEL Backend is live on port ${PORT}`));
-});
+app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
