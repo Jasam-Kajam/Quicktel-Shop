@@ -2,226 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quicktel Bundles</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #7b2ff7, #f107a3);
-            font-family: 'Arial', sans-serif;
-            color: white;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-        .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-top: 30px;
-            animation: colorChange 5s infinite alternate;
-        }
-        @keyframes colorChange {
-            0% { color: #fff; }
-            50% { color: #FFD700; }
-            100% { color: #00FF00; }
-        }
-        .container {
-            width: 90%;
-            margin: 20px auto;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
+            font-family: Arial, sans-serif;
             padding: 20px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 10px;
-            border: none;
-            width: 80%;
-            font-size: 1rem;
-        }
-        .category {
-            margin-top: 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            cursor: pointer;
-            padding: 10px;
-            transition: 0.3s ease;
-        }
-        .category:hover {
-            background: rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #3f87a6, #ebf8e1);
         }
         .category-title {
-            font-size: 1.3rem;
-            color: yellow;
-        }
-        .bundle-list {
-            display: none;
-            margin-top: 10px;
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
         }
         .bundle-option {
-            background: #fff;
-            color: #333;
-            margin: 5px;
+            margin: 5px 0;
             padding: 10px;
-            border-radius: 10px;
+            background-color: #f3f3f3;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
         .bundle-option:hover {
-            background: #f107a3;
-            color: #fff;
+            background-color: #ddd;
         }
-        .bundle-option.selected {
-            border: 3px solid yellow;
-            transform: scale(1.05);
-            background: #f107a3;
-            color: #fff;
+        #payButton {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 18px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="logo">QUICKTEL</div>
-    <div class="container">
-        <h2>Welcome to Quicktel Bundles</h2>
-        <input type="text" id="phone" placeholder="Enter your phone number" required>
+<h1>QUICKTEL BUNDLES</h1>
 
-        <!-- DAILY -->
-        <div class="category">
-            <div class="category-title">📆 Daily Bundles</div>
-            <div class="bundle-list">
-                <div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
-                <div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
-                <div class="bundle-option" data-price="20" data-label="Unlimited SMS">Unlimited SMS - KSh 20</div>
-                <div class="bundle-option" data-price="50" data-label="100MB (7 days)">100MB - KSh 50</div>
-                <div class="bundle-option" data-price="100" data-label="200MB (7 days)">200MB - KSh 100</div>
-                <div class="bundle-option" data-price="250" data-label="500MB (7 days)">500MB - KSh 250</div>
-                <div class="bundle-option" data-price="500" data-label="1000MB (7 days)">1000MB - KSh 500</div>
-                <div class="bundle-option" data-price="10" data-label="100 mins Voice">100 mins Voice - KSh 10</div>
-            </div>
-        </div>
+<h3>📆 Daily Bundles</h3>
+<div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
+<div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
 
-        <!-- WEEKLY -->
-        <div class="category">
-            <div class="category-title">📅 Weekly Bundles</div>
-            <div class="bundle-list">
-                <div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
-                <div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
-                <div class="bundle-option" data-price="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
-                <div class="bundle-option" data-price="100" data-label="500MB + WhatsApp">500MB - KSh 100</div>
-                <div class="bundle-option" data-price="250" data-label="1.5GB + WhatsApp">1.5GB - KSh 250</div>
-                <div class="bundle-option" data-price="500" data-label="3.5GB + WhatsApp">3.5GB - KSh 500</div>
-                <div class="bundle-option" data-price="150" data-label="BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</div>
-            </div>
-        </div>
+<h3>📅 Weekly Bundles</h3>
+<div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
+<div class="bundle-option" data-price="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
 
-        <!-- MONTHLY -->
-        <div class="category">
-            <div class="category-title">🗓️ Monthly Bundles</div>
-            <div class="bundle-list">
-                <div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
-                <div class="bundle-option" data-price="200" data-label="3500 SMS">3500 SMS - KSh 200</div>
-                <div class="bundle-option" data-price="100" data-label="400MB">400MB - KSh 100</div>
-                <div class="bundle-option" data-price="250" data-label="1GB">1GB - KSh 250</div>
-                <div class="bundle-option" data-price="500" data-label="2GB">2GB - KSh 500</div>
-                <div class="bundle-option" data-price="1000" data-label="8GB">8GB - KSh 1,000</div>
-                <div class="bundle-option" data-price="2000" data-label="17GB">17GB - KSh 2,000</div>
-                <div class="bundle-option" data-price="3000" data-label="27GB">27GB - KSh 3,000</div>
-                <div class="bundle-option" data-price="5000" data-label="47GB">47GB - KSh 5,000</div>
-                <div class="bundle-option" data-price="10000" data-label="100GB">100GB - KSh 10,000</div>
-            </div>
-        </div>
+<h3>🗓️ Monthly Bundles</h3>
+<div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
+<div class="bundle-option" data-price="1000" data-label="8GB">8GB - KSh 1000</div>
 
-        <!-- BLAZE Monthly -->
-        <div class="category">
-            <div class="category-title">🔥 BLAZE Monthly Bundles</div>
-            <div class="bundle-list">
-                <div class="bundle-option" data-price="150" data-label="1.25GB (30 Days)">1.25GB - KSh 150</div>
-                <div class="bundle-option" data-price="300" data-label="3GB (30 Days)">3GB - KSh 300</div>
-                <div class="bundle-option" data-price="750" data-label="7.5GB (30 Days)">7.5GB - KSh 750</div>
-                <div class="bundle-option" data-price="2000" data-label="25GB (30 Days)">25GB - KSh 2,000</div>
-            </div>
-        </div>
+<input type="tel" id="phone" placeholder="Enter your Safaricom Number" style="padding: 10px; width: 100%; margin-top: 10px;" />
 
-        <!-- ALL-IN-ONE -->
-        <div class="category">
-            <div class="category-title">📦 All in One Bundles</div>
-            <div class="bundle-list">
-                <div class="bundle-option" data-price="1000" data-label="8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</div>
-                <div class="bundle-option" data-price="2000" data-label="17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</div>
-                <div class="bundle-option" data-price="3000" data-label="27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</div>
-                <div class="bundle-option" data-price="5000" data-label="47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</div>
-                <div class="bundle-option" data-price="10000" data-label="100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</div>
-            </div>
-        </div>
+<button id="payButton">Proceed to Pay</button>
 
-        <button id="payButton"BUY BUNDLES</button>
-        <p id="status"></p>
-    </div>
+<p id="status"></p>
 
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script>
-        let selectedBundle = null;
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    let selectedBundle = null;
 
-        document.querySelectorAll('.bundle-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('.bundle-option').forEach(o => o.classList.remove('selected'));
-                option.classList.add('selected');
-                selectedBundle = {
-                    label: option.getAttribute('data-label'),
-                    price: option.getAttribute('data-price')
-                };
-            });
+    document.querySelectorAll('.bundle-option').forEach(option => {
+        option.addEventListener('click', () => {
+            selectedBundle = {
+                price: option.getAttribute('data-price'),
+                label: option.getAttribute('data-label')
+            };
+            document.querySelectorAll('.bundle-option').forEach(opt => opt.style.background = '#f3f3f3');
+            option.style.background = '#a0f0a0';
         });
+    });
 
-        document.querySelectorAll('.category-title').forEach(title => {
-            title.addEventListener('click', () => {
-                const bundleList = title.nextElementSibling;
-                const isVisible = bundleList.style.display === 'block';
-                document.querySelectorAll('.bundle-list').forEach(list => list.style.display = 'none');
-                bundleList.style.display = isVisible ? 'none' : 'block';
-            });
-        });
+    document.getElementById('payButton').addEventListener('click', () => {
+        const phone = document.getElementById('phone').value.trim();
+        if (!phone.startsWith('07') || phone.length != 10) {
+            alert("Please enter a valid Safaricom number starting with 07...");
+            return;
+        }
 
-        document.getElementById('payButton').addEventListener('click', () => {
-            const phone = document.getElementById('phone').value.trim();
-            if (!phone || !selectedBundle) {
-                alert('Please enter phone number and select bundle.');
-                return;
-            }
+        if (!selectedBundle) {
+            alert("Please select a bundle first.");
+            return;
+        }
 
-            let handler = PaystackPop.setup({
-                key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
-                email: 'customer@example.com',
-                amount: selectedBundle.price * 100,
-                currency: 'KES',
-                callback: function(response) {
-                    document.getElementById('status').innerText = "Verifying payment...";
-                    fetch('http://localhost:5000/verify-payment', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            reference: response.reference,
-                            bundle: selectedBundle.label,
-                            phone: phone
-                        })
+        const handler = PaystackPop.setup({
+            key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
+            email: phone + '@quicktel.com',
+            amount: selectedBundle.price * 100,
+            currency: "KES",
+            callback: function (response) {
+                document.getElementById("status").innerText = "Verifying Payment...";
+                
+                fetch('http://localhost:5000/verify-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        reference: response.reference,
+                        bundle: selectedBundle.label,
+                        phone: phone
                     })
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById('status').innerText = data.message;
-                    });
-                },
-                onClose: function() {
-                    alert('Transaction cancelled');
-                }
-            });
-            handler.openIframe();
+                }).then(res => res.json())
+                  .then(data => {
+                    document.getElementById("status").innerText = data.message;
+                  }).catch(err => {
+                    document.getElementById("status").innerText = "Server error during verification.";
+                  });
+            },
+            onClose: function () {
+                alert('Transaction was cancelled');
+            }
         });
-    </script>
+
+        handler.openIframe();
+    });
+</script>
 
 </body>
 </html>
