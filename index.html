@@ -1,133 +1,249 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <title>Quicktel Bundles</title>  
-    <style>  
-        body {  
-            font-family: Arial, sans-serif;  
-            background: linear-gradient(to bottom right, #4caf50, #81c784);  
-            color: #fff;  
-            padding: 20px;  
-        }  
-        h1 {  
-            text-align: center;  
-        }  
-        .bundle-section {  
-            margin: 20px 0;  
-        }  
-        select, button {  
-            padding: 10px;  
-            margin-top: 10px;  
-            font-size: 16px;  
-            width: 100%;  
-            border: none;  
-            border-radius: 5px;  
-        }  
-        button {  
-            background-color: #ff9800;  
-            color: #fff;  
-            cursor: pointer;  
-        }  
-    </style>  
-</head>  
-<body>  <h1>QUICKTEL BUNDLES</h1>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quicktel Bundles</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #2b5876, #4e4376);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            letter-spacing: 1px;
+            color: #ffe082;
+        }
+        .bundle-section {
+            margin-bottom: 20px;
+        }
+        .bundle-section h3 {
+            margin-bottom: 10px;
+            color: #ffcc80;
+        }
+        select {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+            appearance: none;
+        }
+        select option {
+            color: #000;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: linear-gradient(to right, #ff5722, #e65100);
+            transform: scale(1.05);
+        }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            display: none;
+        }
+        .spinner {
+            border: 8px solid rgba(255,255,255,0.2);
+            border-top: 8px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .message {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
 
-<div class="bundle-section">  
-    <h3>📆 Daily Bundles</h3>  
-    <select id="dailyBundles">  
-        <option value="">-- Select Daily Bundle --</option>  
-        <option value="5|20 SMS">20 SMS - KSh 5</option>  
-        <option value="10|200 SMS">200 SMS - KSh 10</option>  
-        <option value="20|Unlimited SMS">Unlimited SMS - KSh 20</option>  
-        <option value="50|100MB (7 days)">100MB (7 days) - KSh 50</option>  
-        <option value="100|200MB (7 days)">200MB (7 days) - KSh 100</option>  
-        <option value="250|500MB (7 days)">500MB (7 days) - KSh 250</option>  
-        <option value="500|1000MB (7 days)">1000MB (7 days) - KSh 500</option>  
-        <option value="10|100 mins Voice">100 mins Voice - KSh 10</option>  
-    </select>  
-</div>  
+    <div class="container">
+        <h1>QUICKTEL BUNDLES</h1>
 
-<div class="bundle-section">  
-    <h3>📅 Weekly Bundles</h3>  
-    <select id="weeklyBundles">  
-        <option value="">-- Select Weekly Bundle --</option>  
-        <option value="20|100 SMS">100 SMS - KSh 20</option>  
-        <option value="30|1000 SMS">1000 SMS - KSh 30</option>  
-        <option value="50|Unlimited SMS">Unlimited SMS - KSh 50</option>  
-        <option value="100|500MB + WhatsApp">500MB + WhatsApp - KSh 100</option>  
-        <option value="250|1.5GB + WhatsApp">1.5GB + WhatsApp - KSh 250</option>  
-        <option value="500|3.5GB + WhatsApp">3.5GB + WhatsApp - KSh 500</option>  
-        <option value="150|BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</option>  
-    </select>  
-</div>  
+        <!-- DAILY -->
+        <div class="bundle-section">
+            <h3>📆 Daily Bundles</h3>
+            <select id="dailyBundles">
+                <option value="">-- Select Daily Bundle --</option>
+                <option value="5|20 SMS">20 SMS - KSh 5</option>
+                <option value="10|200 SMS">200 SMS - KSh 10</option>
+                <option value="20|Unlimited SMS">Unlimited SMS - KSh 20</option>
+                <option value="50|100MB (7 days)">100MB (7 days) - KSh 50</option>
+                <option value="100|200MB (7 days)">200MB (7 days) - KSh 100</option>
+                <option value="250|500MB (7 days)">500MB (7 days) - KSh 250</option>
+                <option value="500|1000MB (7 days)">1000MB (7 days) - KSh 500</option>
+                <option value="10|100 mins Voice">100 mins Voice - KSh 10</option>
+            </select>
+        </div>
 
-<div class="bundle-section">  
-    <h3>🗓️ Monthly Bundles</h3>  
-    <select id="monthlyBundles">  
-        <option value="">-- Select Monthly Bundle --</option>  
-        <option value="100|1500 SMS">1500 SMS - KSh 100</option>  
-        <option value="200|3500 SMS">3500 SMS - KSh 200</option>  
-        <option value="100|400MB">400MB - KSh 100</option>  
-        <option value="250|1GB">1GB - KSh 250</option>  
-        <option value="500|2GB">2GB - KSh 500</option>  
-        <option value="1000|8GB">8GB - KSh 1,000</option>  
-        <option value="2000|17GB">17GB - KSh 2,000</option>  
-        <option value="3000|27GB">27GB - KSh 3,000</option>  
-        <option value="5000|47GB">47GB - KSh 5,000</option>  
-        <option value="10000|100GB">100GB - KSh 10,000</option>  
-    </select>  
-</div>  
+        <!-- WEEKLY -->
+        <div class="bundle-section">
+            <h3>📅 Weekly Bundles</h3>
+            <select id="weeklyBundles">
+                <option value="">-- Select Weekly Bundle --</option>
+                <option value="20|100 SMS">100 SMS - KSh 20</option>
+                <option value="30|1000 SMS">1000 SMS - KSh 30</option>
+                <option value="50|Unlimited SMS">Unlimited SMS - KSh 50</option>
+                <option value="100|500MB + WhatsApp">500MB + WhatsApp - KSh 100</option>
+                <option value="250|1.5GB + WhatsApp">1.5GB + WhatsApp - KSh 250</option>
+                <option value="500|3.5GB + WhatsApp">3.5GB + WhatsApp - KSh 500</option>
+                <option value="150|BLAZE CYP (7 Days)">BLAZE CYP (7 Days) - KSh 150</option>
+            </select>
+        </div>
 
-<div class="bundle-section">  
-    <h3>🔥 BLAZE Monthly Bundles</h3>  
-    <select id="blazeBundles">  
-        <option value="">-- Select Blaze Bundle --</option>  
-        <option value="150|1.25GB (30 Days)">1.25GB - KSh 150</option>  
-        <option value="300|3GB (30 Days)">3GB - KSh 300</option>  
-        <option value="750|7.5GB (30 Days)">7.5GB - KSh 750</option>  
-        <option value="2000|25GB (30 Days)">25GB - KSh 2,000</option>  
-    </select>  
-</div>  
+        <!-- MONTHLY -->
+        <div class="bundle-section">
+            <h3>🗓️ Monthly Bundles</h3>
+            <select id="monthlyBundles">
+                <option value="">-- Select Monthly Bundle --</option>
+                <option value="100|1500 SMS">1500 SMS - KSh 100</option>
+                <option value="200|3500 SMS">3500 SMS - KSh 200</option>
+                <option value="100|400MB">400MB - KSh 100</option>
+                <option value="250|1GB">1GB - KSh 250</option>
+                <option value="500|2GB">2GB - KSh 500</option>
+                <option value="1000|8GB">8GB - KSh 1000</option>
+                <option value="2000|17GB">17GB - KSh 2000</option>
+                <option value="3000|27GB">27GB - KSh 3000</option>
+                <option value="5000|47GB">47GB - KSh 5000</option>
+                <option value="10000|100GB">100GB - KSh 10000</option>
+            </select>
+        </div>
 
-<div class="bundle-section">  
-    <h3>📦 All in One Bundles</h3>  
-    <select id="allinoneBundles">  
-        <option value="">-- Select All-in-One Bundle --</option>  
-        <option value="1000|8GB + 1000 SMS">8GB + 1000 SMS - KSh 1,000</option>  
-        <option value="2000|17GB + 2000 SMS">17GB + 2000 SMS - KSh 2,000</option>  
-        <option value="3000|27GB + 3000 SMS">27GB + 3000 SMS - KSh 3,000</option>  
-        <option value="5000|47GB + 5000 SMS">47GB + 5000 SMS - KSh 5,000</option>  
-        <option value="10000|100GB + 10,000 SMS">100GB + 10,000 SMS - KSh 10,000</option>  
-    </select>  
-</div>  
+        <!-- BLAZE -->
+        <div class="bundle-section">
+            <h3>🔥 BLAZE Monthly Bundles</h3>
+            <select id="blazeBundles">
+                <option value="">-- Select Blaze Bundle --</option>
+                <option value="150|1.25GB (30 Days)">1.25GB - KSh 150</option>
+                <option value="300|3GB (30 Days)">3GB - KSh 300</option>
+                <option value="750|7.5GB (30 Days)">7.5GB - KSh 750</option>
+                <option value="2000|25GB (30 Days)">25GB - KSh 2000</option>
+            </select>
+        </div>
 
-<button onclick="proceedToPay()">Buy Bundle</button>  
+        <!-- ALL-IN-ONE -->
+        <div class="bundle-section">
+            <h3>📦 All in One Bundles</h3>
+            <select id="allinoneBundles">
+                <option value="">-- Select All-in-One Bundle --</option>
+                <option value="1000|8GB + 1000 SMS">8GB + 1000 SMS - KSh 1000</option>
+                <option value="2000|17GB + 2000 SMS">17GB + 2000 SMS - KSh 2000</option>
+                <option value="3000|27GB + 3000 SMS">27GB + 3000 SMS - KSh 3000</option>
+                <option value="5000|47GB + 5000 SMS">47GB + 5000 SMS - KSh 5000</option>
+                <option value="10000|100GB + 10000 SMS">100GB + 10000 SMS - KSh 10000</option>
+            </select>
+        </div>
 
-<script>  
-    function proceedToPay() {  
-        const dropdowns = ['dailyBundles', 'weeklyBundles', 'monthlyBundles', 'blazeBundles', 'allinoneBundles'];  
-        let selectedValue = '';  
-        let selectedLabel = '';  
+        <button onclick="proceedToPay()">Buy Bundle</button>
 
-        for (let id of dropdowns) {  
-            const select = document.getElementById(id);  
-            if (select.value) {  
-                const parts = select.value.split('|');  
-                selectedValue = parts[0];  
-                selectedLabel = parts[1];  
-                break;  
-            }  
-        }  
+        <div class="message" id="messageBox"></div>
+    </div>
 
-        if (!selectedValue) {  
-            alert('Please select a bundle before proceeding.');  
-            return;  
-        }  
+    <div class="overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
 
-        alert(`You selected: ${selectedLabel} - KSh ${selectedValue}`);  
-        // Here you can call your backend payment API  
-    }  
-</script>
+    <script>
+        async function proceedToPay() {
+            const dropdowns = ['dailyBundles', 'weeklyBundles', 'monthlyBundles', 'blazeBundles', 'allinoneBundles'];
+            let selectedValue = '';
+            let selectedLabel = '';
 
-</body>  
+            for (let id of dropdowns) {
+                const select = document.getElementById(id);
+                if (select && select.value) {
+                    const parts = select.value.split('|');
+                    selectedValue = parts[0];
+                    selectedLabel = parts[1];
+                    break;
+                }
+            }
+
+            if (!selectedValue) {
+                alert('Please select a bundle before proceeding.');
+                return;
+            }
+
+            if (!confirm(`Confirm purchase: ${selectedLabel} for KSh ${selectedValue}?`)) {
+                return;
+            }
+
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            try {
+                const response = await fetch('https://quicktel-shop.onrender.com/api/pay', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: selectedValue,
+                        description: selectedLabel
+                    })
+                });
+
+                const result = await response.json();
+                document.getElementById('loadingOverlay').style.display = 'none';
+
+                if (response.ok) {
+                    showMessage("✅ Payment initiated successfully: " + result.message, true);
+                } else {
+                    showMessage("❌ Payment failed: " + result.message, false);
+                }
+            } catch (error) {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                showMessage("❌ Error: " + error.message, false);
+            }
+        }
+
+        function showMessage(text, success) {
+            const box = document.getElementById('messageBox');
+            box.style.display = 'block';
+            box.style.background = success ? '#2e7d32' : '#c62828';
+            box.textContent = text;
+        }
+    </script>
+
+</body>
 </html>
