@@ -1,59 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Quicktel Bundles</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: linear-gradient(to right, #3f87a6, #ebf8e1);
-        }
-        .category-title {
-            font-size: 20px;
-            margin-top: 20px;
-            color: #333;
-        }
-        .bundle-option {
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #f3f3f3;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .bundle-option:hover {
-            background-color: #ddd;
-        }
-        #payButton {
-            margin-top: 20px;
-            padding: 15px;
-            font-size: 18px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quicktel Bundles</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #008000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .details {
+      margin: 10px 0;
+      color: #555;
+      font-size: 1rem;
+    }
+    .select-btn {
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .select-btn:hover {
+      background-color: #0056b3;
+    }
+    footer {
+      margin: 40px 0 20px;
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .popular-badge {
+      background: #ffc107;
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
+  <header>Quicktel Bundles</header>  <div class="container"><div class="card">
+  <div class="details">No Expiry 1.25GB and WhatsApp</div>
+  <div class="price">KSh150</div>
+  <div class="details">Data Pack · 1.25GB</div>
+  <button class="select-btn" onclick="buyBundle(150, '1.25GB + WhatsApp')">Select</button>
+</div>
 
-<h1>QUICKTEL BUNDLES</h1>
+<div class="card">
+  <div class="price">KSh50</div>
+  <div class="details">Data Pack · 175MB</div>
+  <div class="details">No Expiry 175MB and WhatsApp</div>
+  <button class="select-btn" onclick="buyBundle(50, '175MB + WhatsApp')">Select</button>
+</div>
 
-<h3>📆 Daily Bundles</h3>
-<div class="bundle-option" data-price="1" data-label="10 SMS">10 SMS - KSh 1</div>
-<div class="bundle-option" data-price="5" data-label="20 SMS">20 SMS - KSh 5</div>
-<div class="bundle-option" data-price="10" data-label="200 SMS">200 SMS - KSh 10</div>
-<div class="bundle-option" data-price="15" data-label="500 SMS">500 SMS - KSh 15</div>
-<div class="bundle-option" data-price="30" data-label="1000 SMS">1000 SMS - KSh 30</div>
+<div class="card">
+  <div class="price">KSh250</div>
+  <div class="details">Data Pack · 2GB · 30 days</div>
+  <div class="details">Sh250=2GB 30Days</div>
+  <button class="select-btn" onclick="buyBundle(250, '2GB - 30 Days')">Select</button>
+</div>
 
-<h3>📅 Weekly Bundles</h3>
-<div class="bundle-option" data-price="20" data-label="100 SMS">100 SMS - KSh 20</div>
-<div class="bundle-option" data-price="50" data-label="Unlimited SMS">Unlimited SMS - KSh 50</div>
+<div class="card">
+  <div class="price">KSh200</div>
+  <div class="details">Data Pack · 1GB · 7 days</div>
+  <div class="details">Sh200=1GB 7Days</div>
+  <button class="select-btn" onclick="buyBundle(200, '1GB - 7 Days')">Select</button>
+</div>
 
-<h3>🗓️ Monthly Bundles</h3>
-<div class="bundle-option" data-price="100" data-label="1500 SMS">1500 SMS - KSh 100</div>
-<div class="bundle-option" data-price="1000" data-label="8GB">8GB - KSh 1000</div>
+<div class="card">
+  <div class="popular-badge">Popular now</div>
+  <div class="price">KSh5</div>
+  <div class="details">Data Pack · 10MB</div>
+  <div class="details">No Expiry 10MB</div>
+  <button class="select-btn" onclick="buyBundle(5, '10MB No Expiry')">Select</button>
+</div>
+
+<div class="card">
+  <div class="price">KSh30</div>
+  <div class="details">Data Pack · 500MB</div>
+  <div class="details">Sh30=500MB till midnight</div>
+  <button class="select-btn" onclick="buyBundle(30, '500MB till midnight')">Select</button>
+</div>
 
 <input type="tel" id="phone" placeholder="Enter your Safaricom Number" style="padding: 10px; width: 100%; margin-top: 10px;" />
 
@@ -118,6 +178,20 @@
 
         handler.openIframe();
     });
+
+<footer>
+  <p><strong>Terms & Conditions:</strong> Data bundles are valid for stated durations. No refunds once activated. Network fair usage policy applies. Prices include VAT.</p>
+  <p>&copy; 2025 Quicktel Communications</p>
+</footer>
+
+  </div>  <script>
+    function buyBundle(amount, label) {
+      // This function should connect to your existing backend
+      alert(`You selected ${label} for KSh${amount}`);
+      // Call your backend API here with amount and label
+    }
+  </script></body>
+</html>
 </script>
 
 </body>
