@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+hu<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,87 +81,88 @@
 
 <div class="header">QUICKTEL BUNDLES</div>
 
-<div class="bundle-card">
-    <div class="tag">Popular now</div>
-    <div class="bundle-title">KSh 50</div>
-    <div class="bundle-desc">175 MB · No expiry & WhatsApp</div>
-    <button class="select-btn" onclick="openModal(50, '175MB - No Expiry')">Select</button>
-</div>
+<div class="container">
 
-<div class="bundle-card">
-    <div class="tag">Good deal</div>
-    <div class="bundle-title">KSh 20</div>
-    <div class="bundle-desc">1GB · 1 Hour</div>
-    <button class="select-btn" onclick="openModal(20, '1GB - 1 Hour')">Select</button>
-</div>
-
-<div class="header">QUICKTEL BUNDLES</div>
-
-    <!-- First Batch of Bundles -->
-    <div class="bundle-card">
-        <div class="tag">Popular now</div>
-        <div class="bundle-title">KSh 5</div>
-        <div class="bundle-desc">10 MB · No expiry</div>
-        <button class="select-btn" onclick="openModal('5','10 MB - No Expiry')">Select</button>
+    <div class="card">
+      <div class="good-deal badge">Good deal</div>
+      <div class="price">KSh20</div>
+      <div class="details">Data Pack · 1GB · 1 hour</div>
+      <div class="details">Sh20=1GB 1hr</div>
+      <button class="select-btn" onclick="buyBundle(20, '1GB - 1 Hour')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="tag">Popular now</div>
-        <div class="bundle-title">KSh 30</div>
-        <div class="bundle-desc">500 MB · Till Midnight</div>
-        <button class="select-btn" onclick="openModal('30','500 MB - Till Midnight')">Select</button>
+    <div class="card">
+      <div class="price">KSh100</div>
+      <div class="details">Data Pack · 2GB · 3 days</div>
+      <div class="details">Sh100=2GB 3Days</div>
+      <button class="select-btn" onclick="buyBundle(100, '2GB - 3 Days')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="bundle-title">KSh 50</div>
-        <div class="bundle-desc">175 MB · No expiry & WhatsApp</div>
-        <button class="select-btn" onclick="openModal('50','175 MB - No Expiry + WhatsApp')">Select</button>
+    <div class="card">
+      <div class="badge">Popular now</div>
+      <div class="price">KSh25</div>
+      <div class="details">Data Pack · 300MB · 24 hours</div>
+      <div class="details">Sh25=300MB 24hr</div>
+      <button class="select-btn" onclick="buyBundle(25, '300MB - 24 Hours')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="bundle-title">KSh 250</div>
-        <div class="bundle-desc">2 GB · 30 days</div>
-        <button class="select-btn" onclick="openModal('250','2GB - 30 Days')">Select</button>
+    <div class="card">
+      <div class="badge">Popular now</div>
+      <div class="price">KSh15</div>
+      <div class="details">Data Pack · 500MB · 1 hour</div>
+      <div class="details">Sh15=500MB 1hr</div>
+      <button class="select-btn" onclick="buyBundle(15, '500MB - 1 Hour')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="bundle-title">KSh 200</div>
-        <div class="bundle-desc">1 GB · 7 days</div>
-        <button class="select-btn" onclick="openModal('200','1GB - 7 Days')">Select</button>
+    <div class="card">
+      <div class="price">KSh1,000</div>
+      <div class="details">Data Pack · 5GB</div>
+      <div class="details">No Expiry 5GB and Whatsapp</div>
+      <button class="select-btn" onclick="buyBundle(1000, '5GB No Expiry + Whatsapp')">Select</button>
     </div>
 
-    <!-- Second Batch of Bundles -->
-    <div class="bundle-card">
-        <div class="tag">Good deal</div>
-        <div class="bundle-title">KSh 20</div>
-        <div class="bundle-desc">1 GB · 1 hour</div>
-        <button class="select-btn" onclick="openModal('20','1GB - 1 Hour')">Select</button>
+    <!-- Previous bundles -->
+    <div class="card">
+      <div class="details">No Expiry 1.25GB and WhatsApp</div>
+      <div class="price">KSh150</div>
+      <div class="details">Data Pack · 1.25GB</div>
+      <button class="select-btn" onclick="buyBundle(150, '1.25GB + WhatsApp')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="bundle-title">KSh 100</div>
-        <div class="bundle-desc">2 GB · 3 days</div>
-        <button class="select-btn" onclick="openModal('100','2GB - 3 Days')">Select</button>
+    <div class="card">
+      <div class="price">KSh50</div>
+      <div class="details">Data Pack · 175MB</div>
+      <div class="details">No Expiry 175MB and WhatsApp</div>
+      <button class="select-btn" onclick="buyBundle(50, '175MB + WhatsApp')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="tag">Popular now</div>
-        <div class="bundle-title">KSh 25</div>
-        <div class="bundle-desc">300 MB · 24 hours</div>
-        <button class="select-btn" onclick="openModal('25','300MB - 24 Hours')">Select</button>
+    <div class="card">
+      <div class="price">KSh250</div>
+      <div class="details">Data Pack · 2GB · 30 days</div>
+      <div class="details">Sh250=2GB 30Days</div>
+      <button class="select-btn" onclick="buyBundle(250, '2GB - 30 Days')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="tag">Popular now</div>
-        <div class="bundle-title">KSh 15</div>
-        <div class="bundle-desc">500 MB · 1 hour</div>
-        <button class="select-btn" onclick="openModal('15','500MB - 1 Hour')">Select</button>
+    <div class="card">
+      <div class="price">KSh200</div>
+      <div class="details">Data Pack · 1GB · 7 days</div>
+      <div class="details">Sh200=1GB 7Days</div>
+      <button class="select-btn" onclick="buyBundle(200, '1GB - 7 Days')">Select</button>
     </div>
 
-    <div class="bundle-card">
-        <div class="bundle-title">KSh 1,000</div>
-        <div class="bundle-desc">5 GB · No expiry & WhatsApp</div>
-        <button class="select-btn" onclick="openModal('1000','5GB - No Expiry + WhatsApp')">Select</button>
+    <div class="card">
+      <div class="badge">Popular now</div>
+      <div class="price">KSh5</div>
+      <div class="details">Data Pack · 10MB</div>
+      <div class="details">No Expiry 10MB</div>
+      <button class="select-btn" onclick="buyBundle(5, '10MB No Expiry')">Select</button>
+    </div>
+
+    <div class="card">
+      <div class="price">KSh30</div>
+      <div class="details">Data Pack · 500MB</div>
+      <div class="details">Sh30=500MB till midnight</div>
+      <button class="select-btn" onclick="buyBundle(30, '500MB till midnight')">Select</button>
     </div>
 
 <!-- Modal -->
