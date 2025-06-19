@@ -1,382 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Quicktel Bundles</title>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f1f3f6;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background: #fff;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        .bundle-card {
-            background: #fff;
-            margin: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-        .bundle-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #111;
-        }
-        .star {
-            color: #008000; /* Green color */
-            text-shadow: 0 0 5px #008000, 0 0 10px #008000;
-        }
-        .bundle-desc {
-            color: #666;
-            margin: 5px 0;
-        }
-        .tag {
-            background: #f1f3f6;
-            display: inline-block;
-            padding: 5px 10px;
-            font-size: 12px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .select-btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 400px;
-        }
-  <div id="overlay" style="
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9998;
-"></div>
-        }
-        .close {
-            float: right;
-            font-size: 24px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quicktel Bundles</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 380px;
+      gap: 10px;
+    }
+    .bundle-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      padding: 5px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+    }
+    .popular-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: gold;
+      color: #333;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .stylish-logo {
+      font-size: 18px;
+      font-weight: bold;
+      color: purple;
+      margin-top: 15px;
+    }
+    .bundle-title {
+      color: #2ecc71;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .bundle-validity {
+      color: #000;
+      font-weight: bold;
+      font-size: 15px;
+      margin-top: 5px;
+    }
+    .bundle-price-label {
+      color: #ff5c5c;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .button-select {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px;
+    }
+    footer {
+      margin-top: auto;
+      padding: 15px 10px;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      font-size: 13px;
+      border-top: 1px solid #555;
+    }
+    footer a {
+      color: #1abc9c;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-<div class="header">QUICKTEL BUNDLES</div>
+  <div class="grid-container">
 
-<div class="bundle-card">
-    <div class="tag">
-  <span class="star">⭐</span> Popular now
-</div>
-    <div class="bundle-title">KSh 50</div>
-    <div class="bundle-desc">175 MB · No expiry & WhatsApp</div>
-    <button class="select-btn" onclick="openModal(50, '175MB - No Expiry')">Select</button>
-</div>
+    <!-- New Offers -->
+    <div class="bundle-card"><div class="popular-label">⭐ Popular now</div><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">175MB</div><div class="bundle-validity">No Expiry & WhatsApp</div><div class="bundle-price-label">Price: KSh 50</div><button class="button-select">Select</button></div>
 
-<div class="bundle-card">
-    <div class="tag">Good deal</div>
-    <div class="bundle-title">KSh 20</div>
-    <div class="bundle-desc">1GB · 1 Hour</div>
-    <button class="select-btn" onclick="openModal(20, '1GB - 1 Hour')">Select</button>
-</div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">1GB</div><div class="bundle-validity">Valid | 1 Hour</div><div class="bundle-price-label">Price: KSh 20</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="tag">Good deal</div>
-      <div class="price">KSh20</div>
-      <div class="details">Data Pack · 1GB · 1 hour</div>
-      <div class="details">Sh20=1GB 1hr</div>
-      <button class="select-btn" onclick="openModal(20, '1GB - 1 Hour')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">2GB</div><div class="bundle-validity">Valid | 3 Days</div><div class="bundle-price-label">Price: KSh 100</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh100</div>
-      <div class="details">Data Pack · 2GB · 3 days</div>
-      <div class="details">Sh100=2GB 3Days</div>
-      <button class="select-btn" onclick="openModal(100, '2GB - 3 Days')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="popular-label">⭐ Popular now</div><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">300MB</div><div class="bundle-validity">Valid | 24 Hours</div><div class="bundle-price-label">Price: KSh 25</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="tag">
-  <span class="star">⭐</span> Popular now
-</div>
-      <div class="price">KSh25</div>
-      <div class="details">Data Pack · 300MB · 24 hours</div>
-      <div class="details">Sh25=300MB 24hr</div>
-      <button class="select-btn" onclick="openModal(25, '300MB - 24 Hours')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="popular-label">⭐ Popular now</div><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">500MB</div><div class="bundle-validity">Valid | 1 Hour</div><div class="bundle-price-label">Price: KSh 15</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="tag">
-  <span class="star">⭐</span> Popular now
-</div>
-      <div class="price">KSh15</div>
-      <div class="details">Data Pack · 500MB · 1 hour</div>
-      <div class="details">Sh15=500MB 1hr</div>
-      <button class="select-btn" onclick="openModal(15, '500MB - 1 Hour')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">5GB</div><div class="bundle-validity">No Expiry & WhatsApp</div><div class="bundle-price-label">Price: KSh 1000</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh1,000</div>
-      <div class="details">Data Pack · 5GB</div>
-      <div class="details">No Expiry 5GB and Whatsapp</div>
-      <button class="select-btn" onclick="openModal(1000, '5GB No Expiry + Whatsapp')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">1.25GB</div><div class="bundle-validity">No Expiry & WhatsApp</div><div class="bundle-price-label">Price: KSh 150</div><button class="button-select">Select</button></div>
 
-    <!-- Previous bundles -->
-    <div class="bundle-card">
-      <div class="details">No Expiry 1.25GB and WhatsApp</div>
-      <div class="price">KSh150</div>
-      <div class="details">Data Pack · 1.25GB</div>
-      <button class="select-btn" onclick="openModal(150, '1.25GB + WhatsApp')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">10MB</div><div class="bundle-validity">No Expiry</div><div class="bundle-price-label">Price: KSh 5</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh50</div>
-      <div class="details">Data Pack · 175MB</div>
-      <div class="details">No Expiry 175MB and WhatsApp</div>
-      <button class="select-btn" onclick="openModal(50, '175MB + WhatsApp')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">500MB</div><div class="bundle-validity">Till Midnight</div><div class="bundle-price-label">Price: KSh 30</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh250</div>
-      <div class="details">Data Pack · 2GB · 30 days</div>
-      <div class="details">Sh250=2GB 30Days</div>
-      <button class="select-btn" onclick="openModal(250, '2GB - 30 Days')">Select</button>
-    </div>
+    <!-- Previous SMS Offers -->
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">200 SMS</div><div class="bundle-validity">Valid | 24 Hours</div><div class="bundle-price-label">Price: KSh 9</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh200</div>
-      <div class="details">Data Pack · 1GB · 7 days</div>
-      <div class="details">Sh200=1GB 7Days</div>
-      <button class="select-btn" onclick="openModal(200, '1GB - 7 Days')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">1000 SMS</div><div class="bundle-validity">Valid | 1 Week</div><div class="bundle-price-label">Price: KSh 28</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="tag">
-  <span class="star">⭐</span> Popular now
-</div>
-      <div class="price">KSh5</div>
-      <div class="details">Data Pack · 10MB</div>
-      <div class="details">No Expiry 10MB</div>
-      <button class="select-btn" onclick="openModal(5, '10MB No Expiry')">Select</button>
-    </div>
+    <div class="bundle-card"><div class="stylish-logo">QUICKTEL</div><div class="bundle-title">1500 SMS</div><div class="bundle-validity">Valid | 30 Days</div><div class="bundle-price-label">Price: KSh 97</div><button class="button-select">Select</button></div>
 
-    <div class="bundle-card">
-      <div class="price">KSh30</div>
-      <div class="details">Data Pack · 500MB</div>
-      <div class="details">Sh30=500MB till midnight</div>
-      <button class="select-btn" onclick="openModal(30, '500MB till midnight')">Select</button>
-    </div>
+  </div>
 
-<div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">200 SMS</div>
-      <div class="bundle-validity">Valid | 24hrs</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 9</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">1000 SMS</div>
-      <div class="bundle-validity">Valid | 1 Week</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 28</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">1500 SMS</div>
-      <div class="bundle-validity">Valid | 30 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 97</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">500 Mins</div>
-      <div class="bundle-validity">Valid | 1 Week</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 475</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">3GB Data</div>
-      <div class="bundle-validity">Valid | 7 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 250</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">5GB Data</div>
-      <div class="bundle-validity">Valid | 30 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 400</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">10GB Data</div>
-      <div class="bundle-validity">Valid | 30 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 700</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">25GB Data</div>
-      <div class="bundle-validity">Valid | 30 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 1200</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-    <div class="bundle-card">
-      <div class="stylish-logo">QUICKTEL</div>
-      <div class="bundle-title">50GB Data</div>
-      <div class="bundle-validity">Valid | 30 Days</div>
-      <div class="bundle-price-label">Price:</div>
-      <div class="bundle-price-value">KES 2000</div>
-      <div class="button-group">
-        <button class="buy-btn self-btn">Self</button>
-        <button class="buy-btn others-btn">Others</button>
-      </div>
-    </div>
-
-<!-- Modal -->
-<div id="paymentModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3>Enter Phone Number</h3>
-        <input type="text" id="phoneNumber" placeholder="e.g 0712345678" style="width: 100%; padding: 10px; margin-bottom: 15px; font-size: 16px;">
-        <button class="select-btn" onclick="startPay()">Proceed to Pay</button>
-    </div>
-</div>
-
-<script>
-    let selectedAmount = 0;
-    let selectedBundle = '';
-
-    function openModal(amount, bundle) {
-        selectedAmount = amount;
-        selectedBundle = bundle;
-        document.getElementById('paymentModal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('paymentModal').style.display = 'none';
-    }
-
-    function startPay() {
-        const phone = document.getElementById('phoneNumber').value.trim();
-        if (!phone.match(/^07\d{8}$/)) {
-            alert('Please enter a valid Safaricom number.');
-            return;
-        }
-        closeModal();
-
-        let handler = PaystackPop.setup({
-            key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',  // Replace with your Paystack Public Key
-            email: 'quicktel@customer.com',
-            amount: selectedAmount * 100, // in kobo
-            currency: "KES",
-            callback: function(response) {
-                verifyPayment(response.reference, phone);
-            },
-            onClose: function() {
-                alert('Transaction closed.');
-            }
-        });
-        handler.openIframe();
-    }
-
-    async function verifyPayment(reference, phone) {
-        const response = await fetch('http://localhost:5000/verify-payment', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                reference: reference,
-                bundle: selectedBundle,
-                phone: phone
-            })
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            alert(data.message);
-        } else {
-            alert('Payment failed: ' + data.message);
-        }
-    }
-</script>
-       <footer>
-         &copy; 2025 Quicktel Bundles. All rights reserved. 
-         <br/>
-         <a href="#">Terms & Conditions</a> | 
-         <a href="#">Privacy Policy</a> | 
-         <a href="#">Contact Us</a>
+  <footer>
+    &copy; 2025 Quicktel Bundles. All rights reserved. 
+    <br/>
+    <a href="#">Terms & Conditions</a> | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Contact Us</a>
   </footer>
+
 </body>
 </html>
