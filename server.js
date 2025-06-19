@@ -18,6 +18,7 @@ const africasTalking = africastalking({
     username: 'sandbox',
 });
 
+// Endpoint for verifying payment after Paystack payment success
 app.post('/verify-payment', async (req, res) => {
     const { reference, bundle, phone } = req.body;
 
@@ -37,7 +38,7 @@ app.post('/verify-payment', async (req, res) => {
             // Simulate bundle activation
             console.log(`📶 Activating bundle: ${bundle} for ${phone}`);
 
-            // Send SMS confirmation
+            // Send SMS confirmation via Africa's Talking
             const sms = africasTalking.SMS;
             await sms.send({
                 to: `+254${phone.substring(1)}`, 
@@ -54,4 +55,5 @@ app.post('/verify-payment', async (req, res) => {
     }
 });
 
+// Start backend
 app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
