@@ -228,9 +228,7 @@
         alert('Please enter a valid Safaricom number.');
         return;
     }
-    closeModal();
-
-    // Show the full screen overlay
+    closeModal(); // Show the full screen overlay
     document.getElementById('overlay').style.display = 'block';
 
     let handler = PaystackPop.setup({
