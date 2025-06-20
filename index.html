@@ -5,6 +5,29 @@
     <title>Quicktel Bundles</title>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
+
+<script>
+function changeMain() {
+    const mainSelect = document.getElementById("mainSelect").value;
+    document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+
+    if (mainSelect === 'bundles') {
+        document.getElementById('bundles').classList.add('active');
+        document.getElementById('bundleSubSelectArea').style.display = 'inline';
+        changeBundle(); // update subcategory
+    } else {
+        document.getElementById('bundleSubSelectArea').style.display = 'none';
+        // You can show other sections here if you add minutes or sms later
+        alert("No data for this category yet.");
+    }
+}
+
+function changeBundle() {
+    const bundleSelect = document.getElementById("bundleSelect").value;
+    document.querySelectorAll('#bundles .section').forEach(section => section.classList.remove('active'));
+    document.getElementById(bundleSelect).classList.add('active');
+}
+</script>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(to bottom right, #f7f9fb, #ffffff);
