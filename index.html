@@ -41,6 +41,7 @@
         }
         .logo img {
             width: 140px;
+            border-radius: 15px;
         }
         .bundle-title {
             font-size: 2.2em;
@@ -106,9 +107,11 @@
     <h1>QUICKTEL BUNDLES</h1>
 
     <div class="grid">
+
+        <!-- Example bundle card -->
         <div class="card">
             <div class="logo">
-                <img src="quicktel-logo.png" alt="Quicktel Logo">
+                <img src="https://public-files-paystack-prod.s3.eu-west-1.amazonaws.com/integration-logos/rssmtvcf4bathncmrv37.jpeg" alt="Paystack Logo">
             </div>
             <div class="bundle-title">500 Mins</div>
             <div class="validity">Valid | 1 Week</div>
@@ -120,7 +123,41 @@
             </div>
         </div>
 
-        <!-- Repeat cards for your other bundles -->
+        <!-- Repeat for other bundles -->
+        <!-- You just need to copy the above card structure and replace with other bundle details -->
+
+        <!-- Here's a few more for you -->
+
+        <div class="card">
+            <div class="logo">
+                <img src="https://public-files-paystack-prod.s3.eu-west-1.amazonaws.com/integration-logos/rssmtvcf4bathncmrv37.jpeg" alt="Paystack Logo">
+            </div>
+            <div class="bundle-title">10GB</div>
+            <div class="validity">Valid | 7 Days</div>
+            <div class="price">Price: 799</div>
+            <div class="buy-label">BUY FOR:</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('10GB', 799)">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="logo">
+                <img src="https://public-files-paystack-prod.s3.eu-west-1.amazonaws.com/integration-logos/rssmtvcf4bathncmrv37.jpeg" alt="Paystack Logo">
+            </div>
+            <div class="bundle-title">25GB</div>
+            <div class="validity">Valid | 30 Days</div>
+            <div class="price">Price: 3200</div>
+            <div class="buy-label">BUY FOR:</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('25GB', 3200)">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+
+        <!-- (continue adding more bundles here with the same structure) -->
+
     </div>
 
     <script>
