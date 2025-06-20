@@ -5,192 +5,282 @@
     <title>Quicktel Bundles</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #e1f5fe, #ffffff);
-            color: #333;
-            padding: 20px;
             margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
         }
-        h1 {
+        header {
+            background-color: purple;
+            color: #fff;
             text-align: center;
-            color: purple;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            padding: 20px 0;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
-        .grid {
+        .container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 15px;
+            padding: 20px;
         }
         .card {
-            background: #fff;
+            background-color: white;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            height: 450px;
+            padding: 20px;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 480px; /* Triple height */
         }
-        .bundle-title {
-            font-size: 2em;
-            font-weight: bold;
-            color: green;
-        }
-        .validity {
-            font-size: 1.2em;
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: gold;
             color: black;
+            padding: 5px 10px;
+            border-radius: 50px;
             font-weight: bold;
+            font-size: 14px;
         }
         .price {
-            font-size: 1.5em;
-            color: #f28b82;
-        }
-        .buy-label {
-            font-size: 1.1em;
-            color: yellow;
-            margin-top: 10px;
+            color: #f44336; /* pale red */
+            font-size: 30px;
+            margin: 30px 0 20px 0;
             font-weight: bold;
         }
-        .buttons {
-            margin-top: 10px;
+        .validity {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
         }
-        .self-button {
-            background-color: #333;
-            color: white;
+        .buy-bar {
+            background-color: yellow;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .buy-buttons button {
+            margin: 10px;
+            padding: 15px 30px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin-right: 10px;
-            font-size: 1em;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
         }
-        .others-button {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
+        .self-btn { background-color: #333; color: #fff; }
+        .others-btn { background-color: #1976d2; color: #fff; }
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
         }
     </style>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
 
-    <h1>QUICKTEL BUNDLES</h1>
+<header>QUICKTEL</header>
 
-    <div class="grid">
-        <div class="card">
-            <div class="bundle-title">500 Mins</div>
-            <div class="validity">Valid | 1 Week</div>
-            <div class="price">Price: 475</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('500 Mins', '475')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">200 SMS</div>
-            <div class="validity">Valid | 24hrs</div>
-            <div class="price">Price: 9</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('200 SMS', '9')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">1000 SMS</div>
-            <div class="validity">Valid | 1 Week</div>
-            <div class="price">Price: 28</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('1000 SMS', '28')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">1500 SMS</div>
-            <div class="validity">Valid | 30 Days</div>
-            <div class="price">Price: 97</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('1500 SMS', '97')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">175 MB</div>
-            <div class="validity">No Expiry & WhatsApp</div>
-            <div class="price">Price: 50</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('175 MB', '50')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">1GB</div>
-            <div class="validity">Valid | 1 Hour</div>
-            <div class="price">Price: 20</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('1GB 1Hour', '20')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">2GB</div>
-            <div class="validity">Valid | 3 Days</div>
-            <div class="price">Price: 100</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('2GB 3Days', '100')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">300MB</div>
-            <div class="validity">Valid | 24 Hours</div>
-            <div class="price">Price: 25</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('300MB 24hr', '25')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="bundle-title">500MB</div>
-            <div class="validity">Valid | 1 Hour</div>
-            <div class="price">Price: 15</div>
-            <div class="buy-label">BUY FOR;</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('500MB 1hr', '15')">Self</button>
-                <button class="others-button">Others</button>
-            </div>
+<div class="container">
+
+    <!-- FULL OFFERS -->
+
+    <div class="card">
+        <div class="badge">⭐ Popular now</div>
+        <div class="price">KSh 50</div>
+        <div class="validity">175 MB · No expiry & WhatsApp</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(50,'175MB No Expiry')">Self</button>
+            <button class="others-btn" onclick="pay(50,'175MB No Expiry')">Others</button>
         </div>
     </div>
 
-    <script>
-        function buyBundle(bundle, price) {
-            const phone = prompt("Enter your phone number:");
-            if (!phone) return alert("Phone number is required");
-            
-            fetch("http://localhost:5000/verify-payment", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ reference: "TEST_REF", bundle: bundle, phone: phone })
-            })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => alert("Error: " + error));
+    <div class="card">
+        <div class="price">KSh 20</div>
+        <div class="validity">1GB · 1 Hour</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(20,'1GB 1 Hour')">Self</button>
+            <button class="others-btn" onclick="pay(20,'1GB 1 Hour')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 100</div>
+        <div class="validity">2GB · 3 Days</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(100,'2GB 3 Days')">Self</button>
+            <button class="others-btn" onclick="pay(100,'2GB 3 Days')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">⭐ Popular now</div>
+        <div class="price">KSh 25</div>
+        <div class="validity">300MB · 24 Hours</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(25,'300MB 24hr')">Self</button>
+            <button class="others-btn" onclick="pay(25,'300MB 24hr')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">⭐ Popular now</div>
+        <div class="price">KSh 15</div>
+        <div class="validity">500MB · 1 Hour</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(15,'500MB 1hr')">Self</button>
+            <button class="others-btn" onclick="pay(15,'500MB 1hr')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 1000</div>
+        <div class="validity">5GB · No expiry & WhatsApp</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(1000,'5GB No Expiry')">Self</button>
+            <button class="others-btn" onclick="pay(1000,'5GB No Expiry')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 150</div>
+        <div class="validity">1.25GB · No expiry & WhatsApp</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(150,'1.25GB No Expiry')">Self</button>
+            <button class="others-btn" onclick="pay(150,'1.25GB No Expiry')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 250</div>
+        <div class="validity">2GB · 30 Days</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(250,'2GB 30 Days')">Self</button>
+            <button class="others-btn" onclick="pay(250,'2GB 30 Days')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 200</div>
+        <div class="validity">1GB · 7 Days</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(200,'1GB 7 Days')">Self</button>
+            <button class="others-btn" onclick="pay(200,'1GB 7 Days')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">⭐ Popular now</div>
+        <div class="price">KSh 5</div>
+        <div class="validity">10MB · No Expiry</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(5,'10MB No Expiry')">Self</button>
+            <button class="others-btn" onclick="pay(5,'10MB No Expiry')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 30</div>
+        <div class="validity">500MB · Till Midnight</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(30,'500MB Till Midnight')">Self</button>
+            <button class="others-btn" onclick="pay(30,'500MB Till Midnight')">Others</button>
+        </div>
+    </div>
+
+    <!-- SMS OFFERS -->
+    <div class="card">
+        <div class="price">KSh 9</div>
+        <div class="validity">200 SMS · 24 Hours</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(9,'200 SMS 24hrs')">Self</button>
+            <button class="others-btn" onclick="pay(9,'200 SMS 24hrs')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 28</div>
+        <div class="validity">1000 SMS · 1 Week</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(28,'1000 SMS 1 Week')">Self</button>
+            <button class="others-btn" onclick="pay(28,'1000 SMS 1 Week')">Others</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="price">KSh 97</div>
+        <div class="validity">1500 SMS · 30 Days</div>
+        <div class="buy-bar">BUY FOR:</div>
+        <div class="buy-buttons">
+            <button class="self-btn" onclick="pay(97,'1500 SMS 30 Days')">Self</button>
+            <button class="others-btn" onclick="pay(97,'1500 SMS 30 Days')">Others</button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2025 Quicktel Ltd. All rights reserved.<br>
+    By using this service you agree to our Terms and Conditions, Privacy Policy and Fair Usage Policy.
+</footer>
+
+<script>
+    function pay(amount, bundle) {
+        var phone = prompt("Enter your Safaricom number:");
+        if (!phone || !phone.startsWith("07")) {
+            alert("Please enter a valid Safaricom number.");
+            return;
         }
-    </script>
+        var handler = PaystackPop.setup({
+            key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
+            email: phone + "@quicktel.com",
+            amount: amount * 100,
+            currency: "KES",
+            callback: function(response) {
+                fetch('https://your-backend-url/verify-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        reference: response.reference,
+                        bundle: bundle,
+                        phone: phone
+                    })
+                }).then(res => res.json())
+                  .then(data => alert(data.message))
+                  .catch(err => alert("Error: " + err));
+            },
+            onClose: function() {
+                alert('Payment window closed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
 
 </body>
 </html>
