@@ -3,142 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>Quicktel Bundles</title>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #e1f5fe, #ffffff);
-            color: #333;
-            padding: 20px;
             margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
         }
-        h1 {
+        header {
+            background-color: purple;
+            color: #fff;
             text-align: center;
-            color: purple;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            padding: 20px 0;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
-        .grid {
+        .container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 15px;
+            padding: 20px;
         }
         .card {
-            background: #fff;
+            background-color: white;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            height: 700px;
+            padding: 20px;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 520px; /* Increased height for logo */
         }
         .logo {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .logo img {
-            width: 120px; /* Adjust size as needed */
+            width: 100px;
         }
-        .bundle-title {
-            font-size: 2em;
-            font-weight: bold;
-            color: green;
-        }
-        .validity {
-            font-size: 1.2em;
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: gold;
             color: black;
+            padding: 5px 10px;
+            border-radius: 50px;
             font-weight: bold;
+            font-size: 14px;
         }
         .price {
-            font-size: 1.5em;
-            color: #f28b82;
-        }
-        .buy-label {
-            font-size: 1.1em;
-            color: #FFD700;
-            margin-top: 10px;
+            color: #f44336;
+            font-size: 30px;
+            margin: 20px 0 15px 0;
             font-weight: bold;
         }
-        .buttons {
-            margin-top: 10px;
+        .validity {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
         }
-        .self-button {
-            background-color: #333;
-            color: white;
+        .buy-bar {
+            background-color: yellow;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .buy-buttons button {
+            margin: 10px;
+            padding: 15px 30px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin-right: 10px;
-            font-size: 1em;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
         }
-        .others-button {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
+        .self-btn { background-color: #333; color: #fff; }
+        .others-btn { background-color: #1976d2; color: #fff; }
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
         }
     </style>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
-<body>
-
-    <h1>QUICKTEL BUNDLES</h1>
-
-    <div class="grid">
-        <div class="card">
-            <div class="logo">
-                <img src="quicktel-logo.png" alt="Quicktel Logo">
-            </div>
-            <div class="bundle-title">500 Mins</div>
-            <div class="validity">Valid | 1 Week</div>
-            <div class="price">Price: 475</div>
-            <div class="buy-label">BUY FOR:</div>
-            <div class="buttons">
-                <button class="self-button" onclick="buyBundle('500 Mins', 475)">Self</button>
-                <button class="others-button">Others</button>
-            </div>
-        </div>
-
-        <!-- You can copy this card structure and paste for more bundles -->
+<body><header>QUICKTEL</header><div class="container"><div class="card">
+    <div class="logo">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAYAAADZc7J/AAAACXBIWXMAAAsTAAALEwEAmpwYAAABzUlEQVR4nO2Wv0vDUBCFv3lLi9M7JfgMtIdAIEEiTgslXKWCXQkLB2Iis9kaCwkgglsLEW/0JSZHCiSKelhe5In7M6Vhtksh3fPZ2b7vTmHOezYAI+gGOgDlXkW4gRZ9QmgKLIJG+gvS3Fh9Fn4J1A4pEMv7IXIAkJkbcBfOwBm+AX81xWXhL3k9fLOLa3c+1WrX0HZhgKOwl2SPmsWlQXDJMF/qvAz3uH0e3VqJ0sRWQBJpxFOJ22NDyZDjVCMy9iFyijcCSHE49UZMiPVQjD3z50Xo80b+QbM1+wEKgTdaQQ/5HP5knxK3k+84yoB5Hc3Hcp8ncpw8QeSLPpMZaATCQ2kQNoG3RlQpOiZC6YTXUvhrqG4K+gHF5DDQ9l4noBPcAGMTmT5T8KtvqO0UQmHTaxKtnyQlXlPBjms/x5JK4BC1lwnclCN0eGJ8hRil1rE+BM3cIuKAM9pg3yLUpMgbSRTRd5lFeP1sp7ejGSgCuvUCqQbSPXjINt+RVqOYm6tViAAAAAElFTkSuQmCC" alt="Quicktel Logo">
     </div>
+    <div class="badge">⭐ Popular now</div>
+    <div class="price">KSh 50</div>
+    <div class="validity">175 MB · No expiry & WhatsApp</div>
+    <div class="buy-bar">BUY FOR:</div>
+    <div class="buy-buttons">
+        <button class="self-btn" onclick="pay(50,'175MB No Expiry')">Self</button>
+        <button class="others-btn" onclick="pay(50,'175MB No Expiry')">Others</button>
+    </div>
+</div>
 
-    <script>
-        function buyBundle(bundle, price) {
-            const phone = prompt("Enter your phone number:");
-            if (!phone) return alert("Phone number is required");
+<!-- Repeat for other cards just like above -->
 
-            let handler = PaystackPop.setup({
-                key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
-                email: phone + "@quicktel.com",
-                amount: price * 100,
-                currency: "KES",
-                callback: function(response) {
-                    fetch("http://localhost:5000/verify-payment", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ 
-                            reference: response.reference, 
-                            bundle: bundle, 
-                            phone: phone 
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(data => alert(data.message))
-                    .catch(err => alert("Backend error: " + err));
-                },
-                onClose: function() {
-                    alert('Transaction cancelled');
-                }
-            });
-            handler.openIframe();
+</div><footer>
+    &copy; 2025 Quicktel Ltd. All rights reserved.<br>
+    By using this service you agree to our Terms and Conditions, Privacy Policy and Fair Usage Policy.
+</footer><script>
+    function pay(amount, bundle) {
+        var phone = prompt("Enter your Safaricom number:");
+        if (!phone || !phone.startsWith("07")) {
+            alert("Please enter a valid Safaricom number.");
+            return;
         }
-    </script>
-
-</body>
+        var handler = PaystackPop.setup({
+            key: 'pk_live_3b95d82d975d8cd88f2e0059b1d6dca62c1db036',
+            email: phone + "@quicktel.com",
+            amount: amount * 100,
+            currency: "KES",
+            callback: function(response) {
+                fetch('https://your-backend-url/verify-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        reference: response.reference,
+                        bundle: bundle,
+                        phone: phone
+                    })
+                }).then(res => res.json())
+                  .then(data => alert(data.message))
+                  .catch(err => alert("Error: " + err));
+            },
+            onClose: function() {
+                alert('Payment window closed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script></body>
 </html>
