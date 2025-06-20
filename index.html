@@ -2,89 +2,195 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bingwa-Style Bundle Cards</title>
+    <title>Quicktel Bundles</title>
     <style>
         body {
-            background: #f8f8f8;
             font-family: Arial, sans-serif;
-            margin: 0;
+            background: linear-gradient(to bottom right, #e1f5fe, #ffffff);
+            color: #333;
             padding: 20px;
+            margin: 0;
         }
-        .container {
+        h1 {
+            text-align: center;
+            color: purple;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 20px;
         }
         .card {
             background: #fff;
-            border-radius: 12px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             text-align: center;
-            height: 250px;
+            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .offer-title {
-            color: #4caf50; /* green */
-            font-size: 24px;
+        .bundle-title {
+            font-size: 2em;
             font-weight: bold;
+            color: green;
         }
         .validity {
-            color: #000;
-            font-size: 16px;
-            margin: 10px 0;
+            font-size: 1.2em;
+            color: black;
             font-weight: bold;
         }
         .price {
-            color: #f44336; /* pale red */
-            font-size: 20px;
+            font-size: 1.5em;
+            color: #f28b82;
+        }
+        .buy-label {
+            font-size: 1.1em;
+            color: yellow;
+            margin-top: 10px;
             font-weight: bold;
         }
-        .buy-bar {
-            background: yellow;
-            font-weight: bold;
-            padding: 5px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        .buttons {
+            margin-top: 10px;
         }
-        .buttons button {
-            margin: 0 10px;
-            padding: 10px 20px;
+        .self-button {
+            background-color: #333;
+            color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-right: 10px;
+            font-size: 1em;
             cursor: pointer;
         }
-        .self-btn {
-            background-color: #333;
-            color: #fff;
-        }
-        .others-btn {
-            background-color: #2196f3;
-            color: #fff;
+        .others-button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<h2 style="text-align:center; color: purple;">QUICKTEL BUNDLES</h2>
+    <h1>QUICKTEL BUNDLES</h1>
 
-<div class="container">
-    <div class="card">
-        <div class="offer-title">500 Mins</div>
-        <div class="validity">Valid | 1 Week</div>
-        <div class="price">Price: 475</div>
-        <div class="buy-bar">BUY FOR:</div>
-        <div class="buttons">
-            <button class="self-btn">Self</button>
-            <button class="others-btn">Others</button>
+    <div class="grid">
+        <div class="card">
+            <div class="bundle-title">500 Mins</div>
+            <div class="validity">Valid | 1 Week</div>
+            <div class="price">Price: 475</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('500 Mins', '475')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">200 SMS</div>
+            <div class="validity">Valid | 24hrs</div>
+            <div class="price">Price: 9</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('200 SMS', '9')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">1000 SMS</div>
+            <div class="validity">Valid | 1 Week</div>
+            <div class="price">Price: 28</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('1000 SMS', '28')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">1500 SMS</div>
+            <div class="validity">Valid | 30 Days</div>
+            <div class="price">Price: 97</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('1500 SMS', '97')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">175 MB</div>
+            <div class="validity">No Expiry & WhatsApp</div>
+            <div class="price">Price: 50</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('175 MB', '50')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">1GB</div>
+            <div class="validity">Valid | 1 Hour</div>
+            <div class="price">Price: 20</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('1GB 1Hour', '20')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">2GB</div>
+            <div class="validity">Valid | 3 Days</div>
+            <div class="price">Price: 100</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('2GB 3Days', '100')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">300MB</div>
+            <div class="validity">Valid | 24 Hours</div>
+            <div class="price">Price: 25</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('300MB 24hr', '25')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="bundle-title">500MB</div>
+            <div class="validity">Valid | 1 Hour</div>
+            <div class="price">Price: 15</div>
+            <div class="buy-label">BUY FOR;</div>
+            <div class="buttons">
+                <button class="self-button" onclick="buyBundle('500MB 1hr', '15')">Self</button>
+                <button class="others-button">Others</button>
+            </div>
         </div>
     </div>
-    <!-- Repeat .card as needed for other offers -->
-</div>
+
+    <script>
+        function buyBundle(bundle, price) {
+            const phone = prompt("Enter your phone number:");
+            if (!phone) return alert("Phone number is required");
+            
+            fetch("http://localhost:5000/verify-payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ reference: "TEST_REF", bundle: bundle, phone: phone })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => alert("Error: " + error));
+        }
+    </script>
 
 </body>
 </html>
