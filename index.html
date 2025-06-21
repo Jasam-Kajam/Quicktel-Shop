@@ -1178,6 +1178,11 @@
 </div>
 
 <script>
+// Disable right click
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert("Right-click is disabled on this site.");
+});
 function selectCategory(category) {
     document.getElementById('mainSelect').value = category;
     changeMain();
