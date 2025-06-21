@@ -1178,8 +1178,11 @@
 </div>
 
 <script>
-// Disable right-click
-    document.addEventListener('contextmenu', e => e.preventDefault());
+// Disable right click
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert("Right-click is disabled on this site.");
+});
 
     // Attempt to disable PrintScreen key
     document.addEventListener('keyup', function(e) {
