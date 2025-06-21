@@ -1178,11 +1178,25 @@
 </div>
 
 <script>
-// Disable right click
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-  alert("Right-click is disabled on this site.");
-});
+// Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Attempt to disable PrintScreen key
+    document.addEventListener('keyup', function(e) {
+      if (e.key === "PrintScreen") {
+        alert("Screenshots are disabled.");
+        navigator.clipboard.writeText("");  
+      }
+    });
+
+    // Blur screen when switching tabs (extra trick)
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "visible") {
+        document.body.style.filter = "blur(10px)";
+      } else {
+        document.body.style.filter = "none";
+      }
+    });
 function selectCategory(category) {
     document.getElementById('mainSelect').value = category;
     changeMain();
@@ -1237,27 +1251,6 @@ function payWithPaystack(bundleName, amount) {
     });
     handler.openIframe();
 }
-<script>
-
-    // Disable right-click
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // Attempt to disable PrintScreen key
-    document.addEventListener('keyup', function(e) {
-      if (e.key === "PrintScreen") {
-        alert("Screenshots are disabled.");
-        navigator.clipboard.writeText("");  
-      }
-    });
-
-    // Blur screen when switching tabs (extra trick)
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState !== "visible") {
-        document.body.style.filter = "blur(10px)";
-      } else {
-        document.body.style.filter = "none";
-      }
-    });
 </script>
 <footer style="text-align: center; padding: 20px; background-color: #f2f2f2; color: #555; font-size: 0.9em; border-top: 1px solid #ddd; margin-top: 50px;">
     <p>© 2025 Quicktel Bundles. All Rights Reserved.</p>
