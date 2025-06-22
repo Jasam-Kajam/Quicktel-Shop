@@ -1287,6 +1287,15 @@ function payWithPaystack(bundleName, amount) {
     handler.openIframe();
 }
 </script>
+<div id="othersModal" style="display:none; position:fixed; top:20%; left:30%; width:40%; background:#fff; padding:20px; border:1px solid #000;">
+    <h2>Bundle Purchase</h2>
+    <p>Bundle: <span id="modalBundleName"></span></p>
+    <p>Price: KSh <span id="modalPrice"></span></p>
+
+    <input type="text" placeholder="Enter recipient number">
+
+    <button onclick="closeOthersModal()">Close</button>
+</div>
 <footer style="text-align: center; padding: 20px; background-color: #f2f2f2; color: #555; font-size: 0.9em; border-top: 1px solid #ddd; margin-top: 50px;">
     <p>© 2025 Quicktel Bundles. All Rights Reserved.</p>
     <p>
