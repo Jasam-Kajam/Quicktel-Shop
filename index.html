@@ -1202,6 +1202,17 @@ body::before {
 </div>
 
 <script>
+<script>
+function openOthersModal(bundleName, price) {
+    document.getElementById('othersModal').style.display = 'block';
+    document.getElementById('modalBundleName').innerText = bundleName;
+    document.getElementById('modalPrice').innerText = price;
+}
+
+function closeOthersModal() {
+    document.getElementById('othersModal').style.display = 'none';
+}
+</script>
 let selectedBundleName = "";
 let selectedPrice = 0;
 
