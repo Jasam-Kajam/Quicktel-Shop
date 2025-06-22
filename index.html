@@ -1202,6 +1202,14 @@ body::before {
 </div>
 
 <script>
+let selectedBundleName = "";
+let selectedPrice = 0;
+
+function openOthersModal(bundleName, price) {
+    selectedBundleName = bundleName;
+    selectedPrice = price;
+    document.getElementById("othersModal").style.display = "block";
+}
 // Disable right click
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
